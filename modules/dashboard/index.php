@@ -73,172 +73,177 @@ $stmt = $db->prepare($sql);
 $stmt->execute();
 $upcoming_events = $stmt->fetchAll();
 
+$h = (int) date('G');
+$greet = $h < 12 ? 'Good Morning' : ($h < 17 ? 'Good Afternoon' : 'Good Evening');
+
 require_once '../../includes/header.php';
 ?>
 
 <div class="dashboard">
-    <h1 class="page-title">Dashboard</h1>
-    <p class="subtitle">Welcome back, <?php echo getUserName(); ?>!</p>
-
-    <!-- Statistics Cards -->
-    <div class="stats-grid">
-        <div class="stat-card stat-primary">
-            <div class="stat-icon">
-                <i class="fas fa-user-graduate"></i>
-            </div>
-            <div class="stat-info">
-                <h3><?php echo $stats['total_students']; ?></h3>
-                <p>Total Students</p>
-            </div>
+    <div class="miqt-welcome-banner">
+        <div class="wb-text">
+            <div class="greeting"><?php echo htmlspecialchars($greet); ?></div>
+            <div class="headline">Welcome back, <?php echo htmlspecialchars(getUserName() ?? 'User'); ?>!</div>
+            <div class="sub">Here's what's happening at MIQT today.</div>
         </div>
-
-        <div class="stat-card stat-success">
-            <div class="stat-icon">
-                <i class="fas fa-chalkboard-teacher"></i>
-            </div>
-            <div class="stat-info">
-                <h3><?php echo $stats['total_teachers']; ?></h3>
-                <p>Total Teachers</p>
-            </div>
-        </div>
-
-        <div class="stat-card stat-info">
-            <div class="stat-icon">
-                <i class="fas fa-calendar-check"></i>
-            </div>
-            <div class="stat-info">
-                <h3><?php echo $stats['present_today']; ?></h3>
-                <p>Present Today</p>
-            </div>
-        </div>
-
-        <div class="stat-card stat-warning">
-            <div class="stat-icon">
-                <i class="fas fa-book-quran"></i>
-            </div>
-            <div class="stat-info">
-                <h3><?php echo $stats['today_progress']; ?></h3>
-                <p>Today's Progress</p>
-            </div>
+        <div class="wb-badge">
+            <div class="wb-num"><?php echo (int) $stats['total_students']; ?></div>
+            <div class="wb-lbl">Total Students</div>
         </div>
     </div>
 
-    <div class="dashboard-grid">
-        <!-- Recent Students -->
-        <div class="dashboard-card">
-            <div class="card-header">
-                <h3><i class="fas fa-users"></i> Recent Students</h3>
-                <a href="<?php echo SITE_URL; ?>/modules/students/students.php" class="btn btn-sm">View All</a>
+    <div class="miqt-stat-row">
+        <div class="miqt-sc c1">
+            <div class="sc-top">
+                <div class="sc-icon"><i class="fas fa-user-graduate"></i></div>
+                <span class="sc-trend up">Active</span>
             </div>
-            <div class="card-body">
-                <?php if (count($recent_students) > 0): ?>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Student ID</th>
-                            <th>Name</th>
-                            <th>Class</th>
-                            <th>Admission Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($recent_students as $student): ?>
-                        <tr>
-                            <td><?php echo $student['student_id']; ?></td>
-                            <td><?php echo $student['first_name'] . ' ' . $student['last_name']; ?></td>
-                            <td><?php echo $student['class_name'] ?? 'N/A'; ?></td>
-                            <td><?php echo formatDate($student['admission_date']); ?></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-                <?php else: ?>
-                <p class="text-center text-muted">No students found</p>
-                <?php endif; ?>
-            </div>
+            <div class="sc-num"><?php echo $stats['total_students']; ?></div>
+            <div class="sc-lbl">Total Students</div>
         </div>
-
-        <!-- Upcoming Exams -->
-        <div class="dashboard-card">
-            <div class="card-header">
-                <h3><i class="fas fa-file-alt"></i> Upcoming Exams</h3>
-                <a href="<?php echo SITE_URL; ?>/modules/exams/manage_exams.php" class="btn btn-sm">View All</a>
+        <div class="miqt-sc c2">
+            <div class="sc-top">
+                <div class="sc-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                <span class="sc-trend up">Active</span>
             </div>
-            <div class="card-body">
-                <?php if (count($upcoming_exams) > 0): ?>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Exam</th>
-                            <th>Type</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($upcoming_exams as $exam): ?>
-                        <tr>
-                            <td><?php echo $exam['exam_title']; ?></td>
-                            <td><?php echo $exam['exam_name']; ?></td>
-                            <td><?php echo formatDate($exam['exam_date']); ?></td>
-                            <td><span class="badge badge-info"><?php echo ucfirst($exam['status']); ?></span></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-                <?php else: ?>
-                <p class="text-center text-muted">No upcoming exams</p>
-                <?php endif; ?>
+            <div class="sc-num"><?php echo $stats['total_teachers']; ?></div>
+            <div class="sc-lbl">Total Teachers</div>
+        </div>
+        <div class="miqt-sc c3">
+            <div class="sc-top">
+                <div class="sc-icon"><i class="fas fa-calendar-check"></i></div>
+                <span class="sc-trend neutral">Today</span>
             </div>
+            <div class="sc-num"><?php echo $stats['present_today']; ?></div>
+            <div class="sc-lbl">Present Today</div>
+        </div>
+        <div class="miqt-sc c4">
+            <div class="sc-top">
+                <div class="sc-icon"><i class="fas fa-book-quran"></i></div>
+                <span class="sc-trend neutral">Today</span>
+            </div>
+            <div class="sc-num"><?php echo $stats['today_progress']; ?></div>
+            <div class="sc-lbl">Today's Progress</div>
         </div>
     </div>
 
-    <div class="dashboard-card">
-        <div class="card-header">
-            <h3><i class="fas fa-calendar-alt"></i> Upcoming Events</h3>
-            <a href="<?php echo SITE_URL; ?>/modules/calendar/index.php" class="btn btn-sm">View Calendar</a>
-        </div>
-        <div class="card-body">
-            <?php if (count($upcoming_events) > 0): ?>
-            <table class="table">
+    <div class="miqt-panels-row">
+        <div class="miqt-panel">
+            <div class="panel-top">
+                <div class="panel-title">Recent Students <span class="pill">Latest</span></div>
+                <a href="<?php echo SITE_URL; ?>/modules/students/students.php" class="btn-sm-blue">View All</a>
+            </div>
+            <?php if (count($recent_students) > 0): ?>
+            <table class="miqt-stud-table">
                 <thead>
                     <tr>
-                        <th>Event</th>
-                        <th>Type</th>
-                        <th>Date</th>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Class</th>
+                        <th>Admission Date</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($upcoming_events as $event):
-                        $typeClass = [
-                            'holiday' => 'badge-success',
-                            'exam' => 'badge-danger',
-                            'event' => 'badge-primary',
-                            'meeting' => 'badge-warning',
-                            'other' => 'badge-secondary'
-                        ][$event['event_type']] ?? 'badge-secondary';
-                    ?>
+                    <?php foreach ($recent_students as $student): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($event['title']); ?></td>
-                        <td><span class="badge <?php echo $typeClass; ?>"><?php echo ucfirst($event['event_type']); ?></span></td>
-                        <td><?php echo formatDate($event['event_date']); ?></td>
+                        <td><?php echo htmlspecialchars($student['student_id']); ?></td>
+                        <td><?php echo htmlspecialchars($student['first_name'] . ' ' . $student['last_name']); ?></td>
+                        <td><?php echo htmlspecialchars($student['class_name'] ?? 'N/A'); ?></td>
+                        <td><?php echo formatDate($student['admission_date']); ?></td>
+                        <td><span class="miqt-status-badge">Active</span></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
             <?php else: ?>
-            <p class="text-center text-muted">No upcoming events</p>
+            <div class="miqt-empty-panel">
+                <div class="e-icon"><i class="fas fa-users"></i></div>
+                <div class="e-text">No students found</div>
+            </div>
+            <?php endif; ?>
+        </div>
+
+        <div class="miqt-panel">
+            <div class="panel-top">
+                <div class="panel-title">Upcoming Exams</div>
+                <a href="<?php echo SITE_URL; ?>/modules/exams/manage_exams.php" class="btn-sm-blue">View All</a>
+            </div>
+            <?php if (count($upcoming_exams) > 0): ?>
+            <table class="miqt-stud-table">
+                <thead>
+                    <tr>
+                        <th>Exam</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($upcoming_exams as $exam): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($exam['exam_title']); ?></td>
+                        <td><?php echo htmlspecialchars($exam['exam_name']); ?></td>
+                        <td><?php echo formatDate($exam['exam_date']); ?></td>
+                        <td><span class="badge badge-info"><?php echo ucfirst($exam['status']); ?></span></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php else: ?>
+            <div class="miqt-empty-panel">
+                <div class="e-icon"><i class="fas fa-file-alt"></i></div>
+                <div class="e-text">No upcoming exams scheduled</div>
+            </div>
             <?php endif; ?>
         </div>
     </div>
 
-    <!-- Recent Activity -->
-    <div class="dashboard-card">
-        <div class="card-header">
-            <h3><i class="fas fa-history"></i> Recent Activity</h3>
+    <div class="miqt-panel miqt-panel-full">
+        <div class="panel-top">
+            <div class="panel-title"><i class="fas fa-calendar-alt me-1"></i> Upcoming Events</div>
+            <a href="<?php echo SITE_URL; ?>/modules/calendar/index.php" class="btn-sm-blue">View Calendar</a>
         </div>
-        <div class="card-body">
-            <?php if (count($recent_activities) > 0): ?>
+        <?php if (count($upcoming_events) > 0): ?>
+        <table class="miqt-stud-table">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($upcoming_events as $event):
+                    $typeClass = [
+                        'holiday' => 'badge-success',
+                        'exam' => 'badge-danger',
+                        'event' => 'badge-primary',
+                        'meeting' => 'badge-warning',
+                        'other' => 'badge-secondary'
+                    ][$event['event_type']] ?? 'badge-secondary';
+                ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($event['title']); ?></td>
+                    <td><span class="badge <?php echo $typeClass; ?>"><?php echo ucfirst($event['event_type']); ?></span></td>
+                    <td><?php echo formatDate($event['event_date']); ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php else: ?>
+        <div class="miqt-empty-panel">
+            <div class="e-icon"><i class="fas fa-calendar-alt"></i></div>
+            <div class="e-text">No upcoming events</div>
+        </div>
+        <?php endif; ?>
+    </div>
+
+    <div class="miqt-panel miqt-panel-full">
+        <div class="panel-top">
+            <div class="panel-title"><i class="fas fa-history me-1"></i> Recent Activity</div>
+        </div>
+        <?php if (count($recent_activities) > 0): ?>
             <div class="activity-list">
                 <?php foreach ($recent_activities as $activity): ?>
                 <div class="activity-item">
@@ -247,8 +252,8 @@ require_once '../../includes/header.php';
                     </div>
                     <div class="activity-details">
                         <p class="activity-text">
-                            <strong><?php echo $activity['full_name'] ?? 'System'; ?></strong>
-                            <?php echo strtolower($activity['action']); ?> in <?php echo $activity['module']; ?>
+                            <strong><?php echo htmlspecialchars($activity['full_name'] ?? 'System'); ?></strong>
+                            <?php echo htmlspecialchars(strtolower($activity['action'])); ?> in <?php echo htmlspecialchars($activity['module']); ?>
                         </p>
                         <p class="activity-time">
                             <i class="fas fa-clock"></i> <?php echo date('M d, Y h:i A', strtotime($activity['created_at'])); ?>
@@ -257,10 +262,12 @@ require_once '../../includes/header.php';
                 </div>
                 <?php endforeach; ?>
             </div>
-            <?php else: ?>
-            <p class="text-center text-muted">No recent activity</p>
-            <?php endif; ?>
+        <?php else: ?>
+        <div class="miqt-empty-panel">
+            <div class="e-icon"><i class="fas fa-history"></i></div>
+            <div class="e-text">No recent activity</div>
         </div>
+        <?php endif; ?>
     </div>
 </div>
 

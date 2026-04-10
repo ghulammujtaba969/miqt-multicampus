@@ -102,56 +102,78 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - MIQT System</title>
-    <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/style.css">
+    <title>Login - <?php echo htmlspecialchars(SITE_NAME); ?></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/theme-primary.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="login-page">
-    <div class="login-container">
+<body class="miqt-login-body">
+
+    <div class="left-panel">
+        <div class="geo-pattern"></div>
+        <div class="geo-circles"></div>
+        <div class="left-content">
+            <span class="mosque-icon" aria-hidden="true">🕌</span>
+            <div class="brand-name">MIQT <span>System</span></div>
+            <div class="brand-tagline">Minhaj Institute of Qirat &amp; Tajweed</div>
+            <div class="divider-ornament">✦</div>
+            <ul class="features-list">
+                <li>Comprehensive Student Management</li>
+                <li>Quran Progress Tracking</li>
+                <li>Attendance &amp; Behaviour Records</li>
+                <li>Exams, Results &amp; Reports</li>
+                <li>HR &amp; Academic Calendar</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="right-panel">
         <div class="login-box">
-            <div class="login-header">
-                <i class="fas fa-mosque"></i>
-                <h1>MIQT System</h1>
-                <p>Minhaj Institute of Qirat & Tajweed</p>
-            </div>
+            <div class="institute-badge">Minhaj Institute of Qira'at &amp; Tehfeez-ul-Quran</div>
+            <h2 class="login-heading">Welcome Back</h2>
+            <p class="login-subheading">Sign in to your account to continue</p>
 
             <?php if ($error): ?>
-            <div class="alert alert-danger">
-                <?php echo $error; ?>
-            </div>
+            <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
             <?php endif; ?>
 
-            <form method="POST" action="" class="login-form">
-                <div class="form-group">
-                    <label for="username"><i class="fas fa-user"></i> Username</label>
-                    <input type="text" id="username" name="username" class="form-control" required autofocus>
+            <form method="POST" action="" autocomplete="on">
+                <div class="mb-3">
+                    <label class="form-label miqt-label" for="username">Username</label>
+                    <div class="input-icon-wrap">
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required autofocus>
+                        <span class="icon"><i class="fas fa-user"></i></span>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="password"><i class="fas fa-lock"></i> Password</label>
-                    <input type="password" id="password" name="password" class="form-control" required>
+                <div class="mb-3">
+                    <label class="form-label miqt-label" for="password">Password</label>
+                    <div class="input-icon-wrap">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+                        <span class="icon"><i class="fas fa-lock"></i></span>
+                    </div>
                 </div>
-
-                <button type="submit" class="btn btn-primary btn-block">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </button>
+                <button type="submit" class="btn-login">Login <i class="fas fa-arrow-right ms-1"></i></button>
             </form>
 
-            <div class="login-footer">
-                <p class="text-sm">Default Login Credentials:</p>
-                <p class="text-xs">Username: <strong>principal</strong> / <strong>vice_principal</strong> / <strong>coordinator</strong></p>
-                <p class="text-xs">Password: <strong>admin123</strong></p>
-                <p class="text-xs" style="margin-top: 10px; color: #666;">
-                    <i class="fas fa-info-circle"></i> All users (Admin, Teacher, Student, Parent) login through this page
-                </p>
+            <div class="credentials-box">
+                <div class="cred-title">Default credentials</div>
+                <p>Username: <strong>principal / vice_principal / coordinator</strong></p>
+                <p>Password: <strong>admin123</strong></p>
+                <p style="margin-top:8px;color:#888;font-size:0.78rem;">All users (Admin, Teacher, Student, Parent) use this page to sign in.</p>
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

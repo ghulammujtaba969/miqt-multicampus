@@ -95,6 +95,25 @@ function getUserName() {
 }
 
 /**
+ * Two-letter initials for theme avatar (ASCII-safe).
+ */
+function getUserInitials($name = null) {
+    $name = $name !== null ? $name : getUserName();
+    if (empty($name)) {
+        return '?';
+    }
+    $parts = preg_split('/\s+/', trim($name));
+    $parts = array_filter($parts);
+    $parts = array_values($parts);
+    $initials = '';
+    $max = min(2, count($parts));
+    for ($i = 0; $i < $max; $i++) {
+        $initials .= strtoupper(substr($parts[$i], 0, 1));
+    }
+    return $initials !== '' ? $initials : '?';
+}
+
+/**
  * Generate unique ID
  */
 function generateUniqueId($prefix = '') {

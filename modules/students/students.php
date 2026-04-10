@@ -56,56 +56,84 @@ $stmt = $db->prepare($sql);
 $stmt->execute();
 $classes = $stmt->fetchAll();
 
+$sql = "SELECT COUNT(*) AS c FROM students WHERE status = 'active'";
+$stmt = $db->prepare($sql);
+$stmt->execute();
+$stat_all_active = (int) $stmt->fetch()['c'];
+
+$sql = "SELECT COUNT(*) AS c FROM students WHERE status = 'active' AND MONTH(created_at) = MONTH(CURDATE()) AND YEAR(created_at) = YEAR(CURDATE())";
+$stmt = $db->prepare($sql);
+$stmt->execute();
+$stat_new_month = (int) $stmt->fetch()['c'];
+
+$sql = "SELECT COUNT(*) AS c FROM classes WHERE status = 'active'";
+$stmt = $db->prepare($sql);
+$stmt->execute();
+$stat_class_count = (int) $stmt->fetch()['c'];
+
+$start_row = $total > 0 ? $offset + 1 : 0;
+$end_row = min($offset + count($students), $total);
+
 require_once '../../includes/header.php';
 ?>
 
-<div class="page-header">
-    <h1 class="page-title"><i class="fas fa-user-graduate"></i> All Students</h1>
-    <p class="subtitle">Total Students: <?php echo $total; ?></p>
-</div>
-
-<div class="dashboard-card mb-20">
-    <div class="card-body">
-        <form method="GET" action="" class="form-row">
-            <div class="form-group">
-                <input type="text" name="search" class="form-control" placeholder="Search by ID, Name, or Admission No"
-                       value="<?php echo htmlspecialchars($search); ?>">
-            </div>
-            <div class="form-group">
-                <select name="class" class="form-control">
-                    <option value="">All Classes</option>
-                    <?php foreach ($classes as $class): ?>
-                    <option value="<?php echo $class['id']; ?>" <?php echo ($class_filter == $class['id']) ? 'selected' : ''; ?>>
-                        <?php echo $class['class_name']; ?>
-                    </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-search"></i> Search
-                </button>
-                <a href="students.php" class="btn btn-secondary">
-                    <i class="fas fa-redo"></i> Reset
-                </a>
-                <?php if (hasPermission(['principal', 'vice_principal', 'coordinator'])): ?>
-                <a href="add_student.php" class="btn btn-success">
-                    <i class="fas fa-plus"></i> Add Student
-                </a>
-                <a href="import_students.php" class="btn btn-warning">
-                    <i class="fas fa-file-import"></i> Import
-                </a>
-                <?php endif; ?>
-                <a href="export_students.php?status=active&search=<?php echo urlencode($search); ?>&class=<?php echo urlencode($class_filter); ?>" class="btn btn-info">
-                    <i class="fas fa-file-export"></i> Export
-                </a>
-            </div>
-        </form>
+<div class="miqt-stats-strip">
+    <div class="miqt-ss-card">
+        <div class="ss-ic"><i class="fas fa-user-graduate"></i></div>
+        <div>
+            <div class="ss-num"><?php echo $stat_all_active; ?></div>
+            <div class="ss-lbl">Total Students</div>
+        </div>
+    </div>
+    <div class="miqt-ss-card">
+        <div class="ss-ic"><i class="fas fa-check-circle"></i></div>
+        <div>
+            <div class="ss-num"><?php echo $total; ?></div>
+            <div class="ss-lbl">Matching filter</div>
+        </div>
+    </div>
+    <div class="miqt-ss-card">
+        <div class="ss-ic"><i class="fas fa-user-plus"></i></div>
+        <div>
+            <div class="ss-num"><?php echo $stat_new_month; ?></div>
+            <div class="ss-lbl">New this month</div>
+        </div>
+    </div>
+    <div class="miqt-ss-card">
+        <div class="ss-ic"><i class="fas fa-school"></i></div>
+        <div>
+            <div class="ss-num"><?php echo $stat_class_count; ?></div>
+            <div class="ss-lbl">Classes</div>
+        </div>
     </div>
 </div>
 
-<div class="dashboard-card">
-    <div class="card-body">
+<form method="GET" action="" class="miqt-controls">
+    <div class="ctrl-search" style="position:relative;flex:1;min-width:220px;">
+        <span style="position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--miqt-muted, #6b7d8f);"><i class="fas fa-search"></i></span>
+        <input type="text" name="search" class="form-control" style="padding-left:36px;" placeholder="Search by ID, Name, or Admission No"
+               value="<?php echo htmlspecialchars($search); ?>">
+    </div>
+    <select name="class" class="form-control" style="max-width:200px;">
+        <option value="">All Classes</option>
+        <?php foreach ($classes as $class): ?>
+        <option value="<?php echo $class['id']; ?>" <?php echo ($class_filter == $class['id']) ? 'selected' : ''; ?>>
+            <?php echo htmlspecialchars($class['class_name']); ?>
+        </option>
+        <?php endforeach; ?>
+    </select>
+    <div class="ctrl-btns d-flex flex-wrap gap-2 align-items-center">
+        <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-search"></i> Search</button>
+        <a href="students.php" class="btn btn-secondary btn-sm"><i class="fas fa-redo"></i> Reset</a>
+        <?php if (hasPermission(['principal', 'vice_principal', 'coordinator'])): ?>
+        <a href="add_student.php" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add Student</a>
+        <a href="import_students.php" class="btn btn-warning btn-sm"><i class="fas fa-file-import"></i> Import</a>
+        <?php endif; ?>
+        <a href="export_students.php?status=active&search=<?php echo urlencode($search); ?>&class=<?php echo urlencode($class_filter); ?>" class="btn btn-info btn-sm"><i class="fas fa-file-export"></i> Export</a>
+    </div>
+</form>
+
+<div class="miqt-table-card">
         <?php if (count($students) > 0): ?>
         <table class="table">
             <thead>
@@ -140,6 +168,7 @@ require_once '../../includes/header.php';
                         <?php
                         $status = strtolower($student['status'] ?? '');
                         $badgeClass = 'badge-secondary';
+                        $useMiqtPill = ($status === 'active');
                         switch ($status) {
                             case 'active':
                                 $badgeClass = 'badge-success';
@@ -159,9 +188,13 @@ require_once '../../includes/header.php';
                                 break;
                         }
                         ?>
+                        <?php if ($useMiqtPill): ?>
+                        <span class="miqt-status-badge"><?php echo ucfirst($student['status']); ?></span>
+                        <?php else: ?>
                         <span class="badge <?php echo $badgeClass; ?>">
                             <?php echo ucfirst($student['status']); ?>
                         </span>
+                        <?php endif; ?>
                     </td>
                     <td>
                         <a href="view_student.php?id=<?php echo $student['id']; ?>" class="btn btn-sm btn-info"
@@ -180,21 +213,23 @@ require_once '../../includes/header.php';
             </tbody>
         </table>
 
-        <?php if ($total_pages > 1): ?>
-        <div class="pagination">
+        <div class="miqt-pagination-wrap">
+            <div class="pg-info">Showing <?php echo (int) $start_row; ?> – <?php echo (int) $end_row; ?> of <?php echo (int) $total; ?> students</div>
+            <?php if ($total_pages > 1): ?>
+            <div class="pagination" style="margin:0;">
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
             <a href="?page=<?php echo $i; ?>&search=<?php echo urlencode($search); ?>&class=<?php echo urlencode($class_filter); ?>"
                class="<?php echo ($page == $i) ? 'active' : ''; ?>">
                 <?php echo $i; ?>
             </a>
             <?php endfor; ?>
+            </div>
+            <?php endif; ?>
         </div>
-        <?php endif; ?>
 
         <?php else: ?>
-        <p class="text-center text-muted">No students found</p>
+        <p class="text-center text-muted p-4 mb-0">No students found</p>
         <?php endif; ?>
-    </div>
 </div>
 
 <?php require_once '../../includes/footer.php'; ?>

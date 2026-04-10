@@ -1,0 +1,1268 @@
+/**
+ * MIQT Primary Theme — sky / cobalt / gold
+ * Derived from themes/primary (login, dashboard, students mocks)
+ */
+
+:root {
+  --miqt-sky: #87ceeb;
+  --miqt-sky-light: #c8e8f5;
+  --miqt-sky-pale: #eef7fc;
+  --miqt-cobalt: #2176c7;
+  --miqt-cobalt-dark: #1558a0;
+  --miqt-cobalt-deep: #0d3d73;
+  --miqt-gold: #c8902a;
+  --miqt-gold-light: #fef3dc;
+  --miqt-text: #111827;
+  --miqt-muted: #6b7d8f;
+  --miqt-border: #cce0ef;
+  --miqt-bg-main: #eef7fc;
+  --miqt-sidebar-width: 260px;
+  --miqt-sidebar-collapsed: 72px;
+}
+
+/* ========== Logged-in app shell ========== */
+body.miqt-app {
+  font-family: "Sora", "Segoe UI", system-ui, sans-serif;
+  background: var(--miqt-bg-main);
+  color: var(--miqt-text);
+  min-height: 100vh;
+}
+
+body.miqt-app .wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+body.miqt-app .sidebar {
+  width: var(--miqt-sidebar-width);
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--miqt-cobalt-deep) 0%, var(--miqt-cobalt-dark) 100%);
+  color: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: width 0.3s ease, margin-left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 12px;
+}
+
+body.miqt-app .sidebar::after {
+  content: "";
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(135, 206, 235, 0.15), transparent 70%);
+  pointer-events: none;
+}
+
+body.miqt-app .sb-brand {
+  padding: 22px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+body.miqt-app .sb-brand .logo-sq {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--miqt-sky), var(--miqt-cobalt));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+body.miqt-app .sb-brand .brand-text .name {
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.12rem;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+body.miqt-app .sb-brand .brand-text .sub {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+body.miqt-app .sb-user {
+  margin: 12px 14px 0;
+  padding: 12px 14px;
+  background: rgba(135, 206, 235, 0.12);
+  border: 1px solid rgba(135, 206, 235, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+body.miqt-app .sb-user .avi {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--miqt-sky), var(--miqt-gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #fff;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+body.miqt-app .sb-user .u-name {
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+body.miqt-app .sb-user .u-role {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.68rem;
+  margin-top: 2px;
+}
+
+body.miqt-app .sidebar-menu {
+  list-style: none;
+  padding: 12px 10px 0;
+  margin: 0;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+body.miqt-app .sidebar-menu li.sb-section-label-wrap {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.miqt-app .sb-section-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.22);
+  padding: 14px 10px 6px;
+  display: block;
+}
+
+body.miqt-app .sidebar-menu > li > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.83rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: all 0.2s;
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+body.miqt-app .sidebar-menu > li > a:hover {
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.06);
+  padding-left: 12px;
+}
+
+body.miqt-app .sidebar-menu > li > a.active {
+  background: rgba(135, 206, 235, 0.2);
+  color: #fff;
+  border-left: 3px solid var(--miqt-sky);
+  padding-left: 9px;
+  font-weight: 600;
+}
+
+body.miqt-app .sidebar-menu > li > a i {
+  width: 22px;
+  text-align: center;
+  margin-right: 0;
+  flex-shrink: 0;
+  font-size: 0.95rem;
+}
+
+body.miqt-app .sidebar-menu .submenu {
+  list-style: none;
+  padding: 4px 0 8px 8px;
+  margin: 0;
+  display: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  margin-left: 14px;
+}
+
+body.miqt-app .sidebar-menu .has-dropdown.active + .submenu {
+  display: block;
+}
+
+body.miqt-app .sidebar-menu .submenu a {
+  padding: 7px 12px 7px 10px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.45);
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  margin-bottom: 1px;
+}
+
+body.miqt-app .sidebar-menu .submenu a:hover {
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.05);
+  padding-left: 10px;
+}
+
+body.miqt-app .sidebar-menu .submenu a.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 600;
+}
+
+body.miqt-app .sidebar-menu .submenu hr {
+  border-color: rgba(255, 255, 255, 0.1);
+  margin: 6px 0;
+}
+
+body.miqt-app .sidebar-menu .submenu strong {
+  display: block;
+  padding: 8px 12px 4px;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+/* Main column */
+body.miqt-app .main-content {
+  margin-left: var(--miqt-sidebar-width);
+  width: calc(100% - var(--miqt-sidebar-width));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s, width 0.3s;
+  background: var(--miqt-bg-main);
+}
+
+body.miqt-app .main-content.expanded {
+  margin-left: var(--miqt-sidebar-collapsed);
+  width: calc(100% - var(--miqt-sidebar-collapsed));
+}
+
+body.miqt-app .main-content.expanded.hovering {
+  margin-left: var(--miqt-sidebar-width);
+  width: calc(100% - var(--miqt-sidebar-width));
+}
+
+/* Topbar */
+body.miqt-app .topbar {
+  background: #fff;
+  padding: 0 28px;
+  height: 64px;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--miqt-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+body.miqt-app .topbar .topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+body.miqt-app .topbar .page-heading {
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--miqt-cobalt-deep);
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.miqt-app .topbar .tb-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+body.miqt-app .topbar .tb-date {
+  font-size: 0.78rem;
+  color: var(--miqt-muted);
+  background: var(--miqt-bg-main);
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--miqt-border);
+  font-weight: 500;
+}
+
+body.miqt-app .toggle-btn {
+  font-size: 1.15rem;
+  cursor: pointer;
+  color: var(--miqt-cobalt-deep);
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--miqt-border);
+  background: var(--miqt-bg-main);
+  transition: all 0.2s;
+}
+
+body.miqt-app .toggle-btn:hover {
+  background: var(--miqt-cobalt);
+  color: #fff;
+  border-color: var(--miqt-cobalt);
+}
+
+body.miqt-app .content {
+  flex: 1;
+  padding: 26px 28px 32px;
+}
+
+body.miqt-app .footer {
+  background: #fff;
+  padding: 16px 28px;
+  border-top: 1px solid var(--miqt-border);
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--miqt-muted);
+}
+
+/* Collapsed sidebar */
+body.miqt-app .sidebar.collapsed {
+  width: var(--miqt-sidebar-collapsed);
+}
+
+body.miqt-app .sidebar.collapsed .sb-brand .brand-text,
+body.miqt-app .sidebar.collapsed .sb-user .u-meta {
+  display: none;
+}
+
+body.miqt-app .sidebar.collapsed .sb-user {
+  justify-content: center;
+  padding: 10px;
+}
+
+body.miqt-app .sidebar.collapsed .sb-brand {
+  justify-content: center;
+  padding: 18px 10px;
+}
+
+body.miqt-app .sidebar.collapsed .sidebar-menu > li > a {
+  justify-content: center;
+  padding: 10px;
+  font-size: 0;
+}
+
+body.miqt-app .sidebar.collapsed .sidebar-menu > li > a i {
+  font-size: 1rem;
+  margin: 0;
+}
+
+body.miqt-app .sidebar.collapsed .submenu {
+  display: none !important;
+}
+
+body.miqt-app .sidebar.collapsed .sb-section-label {
+  display: none;
+}
+
+body.miqt-app .sidebar.collapsed.hovering {
+  width: var(--miqt-sidebar-width);
+}
+
+body.miqt-app .sidebar.collapsed.hovering .sb-brand .brand-text,
+body.miqt-app .sidebar.collapsed.hovering .sb-user .u-meta {
+  display: block;
+}
+
+body.miqt-app .sidebar.collapsed.hovering .sb-user {
+  justify-content: flex-start;
+  padding: 12px 14px;
+}
+
+body.miqt-app .sidebar.collapsed.hovering .sb-brand {
+  justify-content: flex-start;
+  padding: 22px 18px;
+}
+
+body.miqt-app .sidebar.collapsed.hovering .sidebar-menu > li > a {
+  justify-content: flex-start;
+  font-size: 0.83rem;
+  padding: 8px 12px;
+}
+
+body.miqt-app .sidebar.collapsed.hovering .sidebar-menu > li > a i {
+  margin-right: 0;
+}
+
+body.miqt-app .sidebar.collapsed.hovering .sb-section-label {
+  display: block;
+}
+
+/* ========== Dashboard theme blocks ========== */
+.miqt-welcome-banner {
+  background: linear-gradient(135deg, var(--miqt-cobalt-deep) 0%, var(--miqt-cobalt) 60%, var(--miqt-sky) 100%);
+  border-radius: 20px;
+  padding: 22px 28px;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.miqt-welcome-banner::before {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.miqt-welcome-banner::after {
+  content: "";
+  position: absolute;
+  right: 60px;
+  bottom: -80px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba(200, 144, 42, 0.14);
+}
+
+.miqt-welcome-banner .wb-text {
+  position: relative;
+  z-index: 1;
+}
+
+.miqt-welcome-banner .greeting {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.miqt-welcome-banner .headline {
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 700;
+  margin: 0;
+}
+
+.miqt-welcome-banner .sub {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 6px;
+}
+
+.miqt-welcome-banner .wb-badge {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 12px 22px;
+  text-align: center;
+}
+
+.miqt-welcome-banner .wb-num {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--miqt-gold-light);
+  line-height: 1;
+}
+
+.miqt-welcome-banner .wb-lbl {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 4px;
+}
+
+.miqt-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+@media (max-width: 1200px) {
+  .miqt-stat-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .miqt-stat-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.miqt-sc {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px 20px;
+  border: 1px solid var(--miqt-border);
+  transition: all 0.25s;
+}
+
+.miqt-sc:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(33, 118, 199, 0.12);
+  border-color: var(--miqt-sky-light);
+}
+
+.miqt-sc .sc-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.miqt-sc .sc-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--miqt-cobalt-deep);
+}
+
+.miqt-sc.c1 .sc-icon {
+  background: var(--miqt-sky-light);
+}
+.miqt-sc.c2 .sc-icon {
+  background: #cce8f6;
+}
+.miqt-sc.c3 .sc-icon {
+  background: #d6edfa;
+}
+.miqt-sc.c4 .sc-icon {
+  background: var(--miqt-gold-light);
+}
+
+.miqt-sc .sc-trend {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.miqt-sc .sc-trend.up {
+  background: #d6eef8;
+  color: var(--miqt-cobalt-dark);
+}
+
+.miqt-sc .sc-trend.neutral {
+  background: var(--miqt-gold-light);
+  color: #8a5a10;
+}
+
+.miqt-sc .sc-num {
+  font-family: "Lora", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--miqt-cobalt-deep);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.miqt-sc .sc-lbl {
+  font-size: 0.78rem;
+  color: var(--miqt-muted);
+  font-weight: 500;
+}
+
+.miqt-panels-row {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+@media (max-width: 1200px) {
+  .miqt-panels-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.miqt-panel {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--miqt-border);
+  overflow: hidden;
+}
+
+.miqt-panel .panel-top {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eef3f8;
+  gap: 12px;
+}
+
+.miqt-panel .panel-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--miqt-cobalt-deep);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.miqt-panel .panel-title .pill {
+  background: var(--miqt-cobalt);
+  color: #fff;
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.miqt-panel .btn-sm-blue {
+  font-size: 0.76rem;
+  padding: 5px 12px;
+  border-radius: 7px;
+  background: transparent;
+  border: 1.5px solid var(--miqt-cobalt);
+  color: var(--miqt-cobalt);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.miqt-panel .btn-sm-blue:hover {
+  background: var(--miqt-cobalt);
+  color: #fff;
+}
+
+.miqt-stud-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.miqt-stud-table th {
+  padding: 10px 20px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--miqt-muted);
+  background: #f7fbfe;
+  border-bottom: 1px solid var(--miqt-border);
+  text-align: left;
+}
+
+.miqt-stud-table td {
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #f0f7fc;
+}
+
+.miqt-stud-table tbody tr:hover td {
+  background: #f4f9fd;
+}
+
+.miqt-stud-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.miqt-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: #d6eef8;
+  color: var(--miqt-cobalt-dark);
+}
+
+.miqt-status-badge::before {
+  content: "●";
+  font-size: 6px;
+}
+
+.miqt-empty-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  color: var(--miqt-muted);
+  text-align: center;
+}
+
+.miqt-empty-panel .e-icon {
+  font-size: 2.2rem;
+  opacity: 0.35;
+  margin-bottom: 8px;
+}
+
+/* Full-width stack below two columns */
+.miqt-panel.miqt-panel-full {
+  margin-bottom: 22px;
+}
+
+.miqt-panel .activity-list {
+  padding: 8px 16px 16px;
+  max-height: 420px;
+}
+
+/* ========== Students list ========== */
+.miqt-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .miqt-stats-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.miqt-ss-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px 18px;
+  border: 1px solid var(--miqt-border);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.25s;
+}
+
+.miqt-ss-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(33, 118, 199, 0.1);
+}
+
+.miqt-ss-card .ss-ic {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--miqt-cobalt-deep);
+}
+
+.miqt-stats-strip .miqt-ss-card:nth-child(1) .ss-ic {
+  background: var(--miqt-sky-light);
+}
+.miqt-stats-strip .miqt-ss-card:nth-child(2) .ss-ic {
+  background: #cce8f6;
+}
+.miqt-stats-strip .miqt-ss-card:nth-child(3) .ss-ic {
+  background: var(--miqt-gold-light);
+}
+.miqt-stats-strip .miqt-ss-card:nth-child(4) .ss-ic {
+  background: #d6edfa;
+}
+
+.miqt-ss-card .ss-num {
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--miqt-cobalt-deep);
+  line-height: 1;
+}
+
+.miqt-ss-card .ss-lbl {
+  font-size: 0.72rem;
+  color: var(--miqt-muted);
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.miqt-controls {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  border: 1px solid var(--miqt-border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.miqt-controls .form-control {
+  border: 1.5px solid var(--miqt-border);
+  border-radius: 9px;
+  background: var(--miqt-bg-main);
+}
+
+.miqt-controls .form-control:focus {
+  border-color: var(--miqt-cobalt);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(33, 118, 199, 0.12);
+}
+
+.miqt-controls .btn-primary {
+  background: var(--miqt-cobalt);
+  border-color: var(--miqt-cobalt);
+}
+
+.miqt-controls .btn-primary:hover {
+  background: var(--miqt-cobalt-dark);
+  border-color: var(--miqt-cobalt-dark);
+}
+
+.miqt-controls .btn-secondary {
+  background: var(--miqt-bg-main);
+  color: var(--miqt-muted);
+  border: 1px solid var(--miqt-border);
+}
+
+.miqt-controls .btn-success {
+  background: var(--miqt-cobalt-deep);
+  border-color: var(--miqt-cobalt-deep);
+}
+
+.miqt-controls .btn-warning {
+  background: var(--miqt-gold);
+  border-color: var(--miqt-gold);
+  color: #fff;
+}
+
+.miqt-controls .btn-info {
+  background: #fff;
+  color: var(--miqt-cobalt);
+  border: 1.5px solid var(--miqt-cobalt);
+}
+
+.miqt-controls .btn-info:hover {
+  background: var(--miqt-cobalt);
+  color: #fff;
+}
+
+.miqt-table-card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid var(--miqt-border);
+  overflow: hidden;
+}
+
+.miqt-table-card .table {
+  margin: 0;
+}
+
+.miqt-table-card .table thead {
+  background: #f4f9fd;
+}
+
+.miqt-table-card .table th {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--miqt-muted);
+  border-bottom: 1px solid var(--miqt-border);
+  padding: 12px 14px;
+}
+
+.miqt-table-card .table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #eef6fc;
+  vertical-align: middle;
+}
+
+.miqt-table-card .table tbody tr:hover {
+  background: #f4f9fd;
+}
+
+.miqt-pagination-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--miqt-border);
+  background: #fafcfe;
+}
+
+.miqt-pagination-wrap .pg-info {
+  font-size: 0.78rem;
+  color: var(--miqt-muted);
+}
+
+/* ========== Login page (split layout) ========== */
+body.miqt-login-body {
+  font-family: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+  background: var(--miqt-sky-pale);
+  margin: 0;
+}
+
+.miqt-login-body .left-panel {
+  width: 55%;
+  background: linear-gradient(150deg, var(--miqt-cobalt-deep) 0%, var(--miqt-cobalt) 50%, var(--miqt-sky) 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.miqt-login-body .geo-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  background-image: repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%),
+    repeating-linear-gradient(-45deg, #fff 0, #fff 1px, transparent 0, transparent 50%);
+  background-size: 40px 40px;
+}
+
+.miqt-login-body .geo-circles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.miqt-login-body .geo-circles::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  top: -150px;
+  left: -150px;
+}
+
+.miqt-login-body .geo-circles::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border: 1px solid rgba(200, 144, 42, 0.22);
+  border-radius: 50%;
+  bottom: -100px;
+  right: -100px;
+}
+
+.miqt-login-body .left-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px;
+}
+
+.miqt-login-body .mosque-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  display: block;
+  filter: drop-shadow(0 4px 20px rgba(200, 144, 42, 0.35));
+  animation: miqtFloatIcon 4s ease-in-out infinite;
+}
+
+@keyframes miqtFloatIcon {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.miqt-login-body .brand-name {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 2px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.miqt-login-body .brand-name span {
+  color: var(--miqt-gold);
+}
+
+.miqt-login-body .brand-tagline {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.88rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.miqt-login-body .divider-ornament {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--miqt-gold);
+  margin-bottom: 28px;
+}
+
+.miqt-login-body .divider-ornament::before,
+.miqt-login-body .divider-ornament::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+}
+
+.miqt-login-body .divider-ornament::before {
+  background: linear-gradient(to right, transparent, var(--miqt-gold));
+}
+
+.miqt-login-body .divider-ornament::after {
+  background: linear-gradient(to left, transparent, var(--miqt-gold));
+}
+
+.miqt-login-body .features-list {
+  list-style: none;
+  text-align: left;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.miqt-login-body .features-list li {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.88rem;
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.miqt-login-body .features-list li::before {
+  content: "◆";
+  color: var(--miqt-gold);
+  font-size: 8px;
+  flex-shrink: 0;
+}
+
+.miqt-login-body .right-panel {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--miqt-sky-pale);
+  padding: 48px 40px;
+  position: relative;
+}
+
+.miqt-login-body .right-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--miqt-sky), var(--miqt-cobalt), var(--miqt-gold));
+}
+
+.miqt-login-body .login-box {
+  width: 100%;
+  max-width: 400px;
+  animation: miqtSlideIn 0.6s ease both;
+}
+
+@keyframes miqtSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.miqt-login-body .login-heading {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--miqt-cobalt-deep);
+  margin-bottom: 4px;
+}
+
+.miqt-login-body .login-subheading {
+  color: var(--miqt-muted);
+  font-size: 0.88rem;
+  margin-bottom: 28px;
+}
+
+.miqt-login-body .institute-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--miqt-sky-light);
+  border: 1px solid var(--miqt-border);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--miqt-cobalt-deep);
+  margin-bottom: 18px;
+  letter-spacing: 0.3px;
+}
+
+.miqt-login-body .form-label.miqt-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--miqt-cobalt-deep);
+  margin-bottom: 6px;
+}
+
+.miqt-login-body .input-icon-wrap {
+  position: relative;
+}
+
+.miqt-login-body .input-icon-wrap .icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--miqt-muted);
+  pointer-events: none;
+}
+
+.miqt-login-body .form-control {
+  border: 1.5px solid #c5dff0;
+  border-radius: 8px;
+  padding: 12px 40px 12px 16px;
+  font-size: 0.93rem;
+}
+
+.miqt-login-body .form-control:focus {
+  border-color: var(--miqt-cobalt);
+  box-shadow: 0 0 0 3px rgba(33, 118, 199, 0.15);
+  outline: none;
+}
+
+.miqt-login-body .btn-login {
+  width: 100%;
+  padding: 13px;
+  background: var(--miqt-cobalt);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.miqt-login-body .btn-login:hover {
+  background: var(--miqt-cobalt-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(33, 118, 199, 0.3);
+}
+
+.miqt-login-body .credentials-box {
+  margin-top: 24px;
+  padding: 16px 18px;
+  background: #fff;
+  border-radius: 10px;
+  border-left: 3px solid var(--miqt-cobalt);
+  box-shadow: 0 2px 12px rgba(33, 118, 199, 0.08);
+}
+
+.miqt-login-body .credentials-box .cred-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--miqt-cobalt-deep);
+  margin-bottom: 8px;
+}
+
+.miqt-login-body .credentials-box p {
+  font-size: 0.82rem;
+  color: #555;
+  margin: 2px 0;
+}
+
+.miqt-login-body .alert {
+  border-radius: 8px;
+  margin-bottom: 18px;
+}
+
+@media (max-width: 768px) {
+  .miqt-login-body .left-panel {
+    display: none;
+  }
+  .miqt-login-body .right-panel {
+    width: 100%;
+  }
+}
+
+/* ========== Global primary button alignment ========== */
+body.miqt-app .btn-primary {
+  background: var(--miqt-cobalt);
+  border-color: var(--miqt-cobalt);
+}
+
+body.miqt-app .btn-primary:hover {
+  background: var(--miqt-cobalt-dark);
+  border-color: var(--miqt-cobalt-dark);
+}
+
+body.miqt-app .page-title {
+  color: var(--miqt-cobalt-deep);
+  font-family: "Lora", Georgia, serif;
+}
+
+body.miqt-app .stat-card {
+  border-left-color: var(--miqt-cobalt);
+}
+
+body.miqt-app .stat-card .stat-icon {
+  color: var(--miqt-cobalt);
+}

@@ -2,31 +2,44 @@
 if (!isLoggedIn()) {
     redirect(SITE_URL . '/index.php');
 }
+if (!isset($pageTitle)) {
+    $pageTitle = '';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($pageTitle) ? $pageTitle . ' - ' . SITE_NAME : SITE_NAME; ?></title>
-    <!-- Bootstrap CSS (global) -->
+    <title><?php echo $pageTitle !== '' ? htmlspecialchars($pageTitle) . ' - ' . SITE_NAME : SITE_NAME; ?></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,400&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- App styles (load after Bootstrap to allow overrides) -->
+    <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/theme-primary.css">
     <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/style.css">
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
+<body class="miqt-app">
     <div class="wrapper">
-        <!-- Sidebar -->
         <nav class="sidebar">
-            <div class="sidebar-header">
-                <h3>MIQT System</h3>
-                <p class="text-sm"><?php echo getUserName(); ?></p>
-                <p class="text-xs"><?php echo ucfirst(str_replace('_', ' ', getUserRole())); ?></p>
+            <div class="sb-brand">
+                <div class="logo-sq" aria-hidden="true">🕌</div>
+                <div class="brand-text">
+                    <div class="name">MIQT System</div>
+                    <div class="sub">Islamic Institute</div>
+                </div>
+            </div>
+            <div class="sb-user">
+                <div class="avi" title="<?php echo htmlspecialchars(getUserName() ?? ''); ?>"><?php echo htmlspecialchars(getUserInitials()); ?></div>
+                <div class="u-meta">
+                    <div class="u-name"><?php echo htmlspecialchars(getUserName() ?? ''); ?></div>
+                    <div class="u-role"><?php echo htmlspecialchars(ucfirst(str_replace('_', ' ', getUserRole() ?? ''))); ?></div>
+                </div>
             </div>
 
             <ul class="sidebar-menu">
+                <li class="sb-section-label-wrap"><span class="sb-section-label">Navigation</span></li>
                 <li>
                     <a href="<?php echo SITE_URL; ?>/modules/dashboard/index.php">
                         <i class="fas fa-home"></i> Dashboard
@@ -34,7 +47,6 @@ if (!isLoggedIn()) {
                 </li>
 
                 <?php if (hasPermission(['principal', 'vice_principal', 'coordinator'])): ?>
-                <!-- HR Module -->
                 <li>
                     <a href="#" class="has-dropdown">
                         <i class="fas fa-users"></i> HR Management
@@ -49,7 +61,6 @@ if (!isLoggedIn()) {
                 </li>
                 <?php endif; ?>
 
-                <!-- Students Module -->
                 <li>
                     <a href="#" class="has-dropdown">
                         <i class="fas fa-user-graduate"></i> Students
@@ -70,7 +81,6 @@ if (!isLoggedIn()) {
                     </ul>
                 </li>
 
-                <!-- Attendance Module -->
                 <li>
                     <a href="#" class="has-dropdown">
                         <i class="fas fa-calendar-check"></i> Attendance
@@ -84,7 +94,8 @@ if (!isLoggedIn()) {
                     </ul>
                 </li>
 
-                <!-- Behaviour Module -->
+                <li class="sb-section-label-wrap"><span class="sb-section-label">Academic</span></li>
+
                 <li>
                     <a href="#" class="has-dropdown">
                         <i class="fas fa-user-check"></i> Behaviour
@@ -97,7 +108,6 @@ if (!isLoggedIn()) {
                     </ul>
                 </li>
 
-                <!-- Progress Module -->
                 <li>
                     <a href="#" class="has-dropdown">
                         <i class="fas fa-book-quran"></i> Quran Progress
@@ -112,7 +122,6 @@ if (!isLoggedIn()) {
                 </li>
 
                 <?php if (hasPermission(['principal', 'vice_principal', 'coordinator'])): ?>
-                <!-- Quran Content Module -->
                 <li>
                     <a href="#" class="has-dropdown">
                         <i class="fas fa-book"></i> Quran Content
@@ -125,10 +134,9 @@ if (!isLoggedIn()) {
                 </li>
                 <?php endif; ?>
 
-                <!-- Exams Module -->
                 <li>
                     <a href="#" class="has-dropdown">
-                        <i class="fas fa-file-alt"></i> Exams & Results
+                        <i class="fas fa-file-alt"></i> Exams &amp; Results
                     </a>
                     <ul class="submenu">
                         <?php if (hasPermission(['principal', 'vice_principal', 'coordinator'])): ?>
@@ -141,7 +149,8 @@ if (!isLoggedIn()) {
                     </ul>
                 </li>
 
-                <!-- Reports Module -->
+                <li class="sb-section-label-wrap"><span class="sb-section-label">Reports &amp; system</span></li>
+
                 <li>
                     <a href="#" class="has-dropdown">
                         <i class="fas fa-chart-bar"></i> Reports
@@ -163,7 +172,6 @@ if (!isLoggedIn()) {
                     </ul>
                 </li>
 
-                <!-- Academic Calendar -->
                 <li>
                     <a href="#" class="has-dropdown">
                         <i class="fas fa-calendar-alt"></i> Academic Calendar
@@ -192,7 +200,6 @@ if (!isLoggedIn()) {
                 <?php endif; ?>
 
                 <?php if (hasPermission(['principal', 'vice_principal'])): ?>
-                <!-- Settings -->
                 <li>
                     <a href="<?php echo SITE_URL; ?>/modules/settings/settings.php">
                         <i class="fas fa-cog"></i> Settings
@@ -200,7 +207,6 @@ if (!isLoggedIn()) {
                 </li>
                 <?php endif; ?>
 
-                <!-- Logout -->
                 <li>
                     <a href="<?php echo SITE_URL; ?>/modules/auth/logout.php">
                         <i class="fas fa-sign-out-alt"></i> Logout
@@ -209,20 +215,21 @@ if (!isLoggedIn()) {
             </ul>
         </nav>
 
-        <!-- Main Content -->
         <div class="main-content">
             <div class="topbar">
-                <div class="toggle-btn" id="sidebarToggle">
-                    <i class="fas fa-bars"></i>
+                <div class="topbar-left">
+                    <div class="toggle-btn" id="sidebarToggle" onclick="toggleSidebar(); return false;" title="Toggle sidebar">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <h1 class="page-heading"><?php echo $pageTitle !== '' ? htmlspecialchars($pageTitle) : 'Dashboard'; ?></h1>
                 </div>
-                <div class="user-info">
-                    <span><?php echo date('l, F d, Y'); ?></span>
+                <div class="tb-right">
+                    <div class="tb-date"><i class="far fa-calendar-alt me-1"></i><?php echo date('l, F d, Y'); ?></div>
                 </div>
             </div>
 
             <div class="content">
                 <?php
-                // Display flash messages
                 $flash = getFlash();
                 if ($flash):
                 ?>
