@@ -109,3 +109,23 @@ Details:
   - current assigned class (`class_id`)
   - current school class (`current_school_class`)
 - Kept admission date, guardian, phone, and status visible to help operators verify the right student rows before bulk updates.
+
+### Added project README
+
+Files changed:
+- `README.md`
+
+Details:
+- Created a root-level project README for onboarding and project reference.
+- Documented:
+  - project purpose
+  - main features
+  - module list
+  - technology stack
+  - configuration notes
+  - database notes
+  - recent custom additions
+  - setup guidance
+  - key files
+  - maintenance considerations
+  - change tracking location
