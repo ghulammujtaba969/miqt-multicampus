@@ -4,8 +4,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Sidebar toggle
-    const toggleBtn = document.querySelector('.toggle-btn');
+    // Sidebar toggle (single handler; footer.php defines toggleSidebar() for class + localStorage)
+    const toggleBtn = document.getElementById('sidebarToggle') || document.querySelector('.toggle-btn');
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.querySelector('.main-content');
 
@@ -27,17 +27,33 @@ document.addEventListener('DOMContentLoaded', function() {
             mainContent.classList.remove('expanded');
         }
 
-        // Add event listener as backup (inline onclick is primary)
-        toggleBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+        function syncSidebarToggleAria() {
+            const collapsed = sidebar.classList.contains('collapsed');
+            toggleBtn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+        }
+        syncSidebarToggleAria();
 
-            const willCollapse = !sidebar.classList.contains('collapsed');
-            sidebar.classList.toggle('collapsed');
-            mainContent.classList.toggle('expanded');
+        function handleToggle(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            if (typeof window.toggleSidebar === 'function') {
+                window.toggleSidebar();
+            } else {
+                sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('expanded');
+                localStorage.setItem('sidebarCollapsed', String(sidebar.classList.contains('collapsed')));
+            }
+            syncSidebarToggleAria();
+        }
 
-            // Save state to localStorage
-            localStorage.setItem('sidebarCollapsed', willCollapse);
+        toggleBtn.addEventListener('click', handleToggle);
+        toggleBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleToggle(e);
+            }
         });
 
         // Hover expand/collapse when collapsed

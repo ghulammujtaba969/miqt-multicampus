@@ -22,7 +22,7 @@ if (!isset($pageTitle)) {
 </head>
 <body class="miqt-app">
     <div class="wrapper">
-        <nav class="sidebar">
+        <nav class="sidebar" id="miqt-sidebar">
             <div class="sb-brand">
                 <div class="logo-sq" aria-hidden="true">🕌</div>
                 <div class="brand-text">
@@ -218,7 +218,7 @@ if (!isset($pageTitle)) {
         <div class="main-content">
             <div class="topbar">
                 <div class="topbar-left">
-                    <div class="toggle-btn" id="sidebarToggle" onclick="toggleSidebar(); return false;" title="Toggle sidebar">
+                    <div class="toggle-btn" id="sidebarToggle" role="button" tabindex="0" title="Toggle sidebar" aria-controls="miqt-sidebar" aria-expanded="true">
                         <i class="fas fa-bars"></i>
                     </div>
                     <h1 class="page-heading"><?php echo $pageTitle !== '' ? htmlspecialchars($pageTitle) : 'Dashboard'; ?></h1>

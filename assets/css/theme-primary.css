@@ -1243,15 +1243,158 @@ body.miqt-login-body {
   }
 }
 
-/* ========== Global primary button alignment ========== */
+/* ========== Bootstrap buttons → MIQT palette (app shell) ========== */
 body.miqt-app .btn-primary {
-  background: var(--miqt-cobalt);
+  --bs-btn-bg: var(--miqt-cobalt);
+  --bs-btn-border-color: var(--miqt-cobalt);
+  --bs-btn-hover-bg: var(--miqt-cobalt-dark);
+  --bs-btn-hover-border-color: var(--miqt-cobalt-dark);
+  --bs-btn-active-bg: #124a80;
+  --bs-btn-active-border-color: #124a80;
+  --bs-btn-focus-shadow-rgb: 33, 118, 199;
+  background-color: var(--miqt-cobalt);
+  border-color: var(--miqt-cobalt);
+  color: #fff;
+}
+
+body.miqt-app .btn-primary:hover,
+body.miqt-app .btn-primary:focus-visible {
+  background-color: var(--miqt-cobalt-dark);
+  border-color: var(--miqt-cobalt-dark);
+  color: #fff;
+}
+
+/* Was Bootstrap green — use deep cobalt for “add / success” actions */
+body.miqt-app .btn-success {
+  --bs-btn-bg: var(--miqt-cobalt-deep);
+  --bs-btn-border-color: var(--miqt-cobalt-deep);
+  --bs-btn-hover-bg: var(--miqt-cobalt-dark);
+  --bs-btn-hover-border-color: var(--miqt-cobalt-dark);
+  --bs-btn-active-bg: #0a3058;
+  --bs-btn-active-border-color: #0a3058;
+  --bs-btn-focus-shadow-rgb: 13, 61, 115;
+  background-color: var(--miqt-cobalt-deep);
+  border-color: var(--miqt-cobalt-deep);
+  color: #fff;
+}
+
+body.miqt-app .btn-success:hover,
+body.miqt-app .btn-success:focus-visible {
+  background-color: var(--miqt-cobalt-dark);
+  border-color: var(--miqt-cobalt-dark);
+  color: #fff;
+}
+
+body.miqt-app .btn-secondary {
+  --bs-btn-bg: var(--miqt-bg-main);
+  --bs-btn-border-color: var(--miqt-border);
+  --bs-btn-color: var(--miqt-muted);
+  --bs-btn-hover-bg: #dceef7;
+  --bs-btn-hover-border-color: var(--miqt-cobalt);
+  --bs-btn-hover-color: var(--miqt-cobalt-deep);
+  background-color: var(--miqt-bg-main);
+  border-color: var(--miqt-border);
+  color: var(--miqt-muted);
+}
+
+body.miqt-app .btn-secondary:hover,
+body.miqt-app .btn-secondary:focus-visible {
+  background-color: #dceef7;
+  border-color: var(--miqt-border);
+  color: var(--miqt-cobalt-deep);
+}
+
+body.miqt-app .btn-info {
+  --bs-btn-bg: #fff;
+  --bs-btn-border-color: var(--miqt-cobalt);
+  --bs-btn-color: var(--miqt-cobalt);
+  --bs-btn-hover-bg: var(--miqt-cobalt);
+  --bs-btn-hover-border-color: var(--miqt-cobalt);
+  --bs-btn-hover-color: #fff;
+  background-color: #fff;
+  border-color: var(--miqt-cobalt);
+  color: var(--miqt-cobalt);
+}
+
+body.miqt-app .btn-info:hover,
+body.miqt-app .btn-info:focus-visible {
+  background-color: var(--miqt-cobalt);
+  border-color: var(--miqt-cobalt);
+  color: #fff;
+}
+
+/* Table row “View” (btn-info btn-sm): soft sky tile — not white outline */
+body.miqt-app .dashboard-card .table .btn.btn-sm.btn-info,
+body.miqt-app .miqt-table-card .table .btn.btn-sm.btn-info,
+body.miqt-app .miqt-panel .table .btn.btn-sm.btn-info {
+  background-color: var(--miqt-sky-light);
+  border-color: rgba(33, 118, 199, 0.38);
+  color: var(--miqt-cobalt-deep);
+}
+
+body.miqt-app .dashboard-card .table .btn.btn-sm.btn-info:hover,
+body.miqt-app .miqt-table-card .table .btn.btn-sm.btn-info:hover,
+body.miqt-app .miqt-panel .table .btn.btn-sm.btn-info:hover,
+body.miqt-app .dashboard-card .table .btn.btn-sm.btn-info:focus-visible,
+body.miqt-app .miqt-table-card .table .btn.btn-sm.btn-info:focus-visible,
+body.miqt-app .miqt-panel .table .btn.btn-sm.btn-info:focus-visible {
+  background-color: var(--miqt-cobalt);
+  border-color: var(--miqt-cobalt);
+  color: #fff;
+}
+
+body.miqt-app .btn-warning {
+  --bs-btn-bg: var(--miqt-gold);
+  --bs-btn-border-color: var(--miqt-gold);
+  --bs-btn-hover-bg: #a87020;
+  --bs-btn-hover-border-color: #a87020;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-color: #fff;
+  background-color: var(--miqt-gold);
+  border-color: var(--miqt-gold);
+  color: #fff;
+}
+
+body.miqt-app .btn-warning:hover,
+body.miqt-app .btn-warning:focus-visible {
+  background-color: #a87020;
+  border-color: #a87020;
+  color: #fff;
+}
+
+body.miqt-app .btn-danger {
+  --bs-btn-bg: #c92a2a;
+  --bs-btn-border-color: #c92a2a;
+  --bs-btn-hover-bg: #a61e1e;
+  --bs-btn-hover-border-color: #a61e1e;
+}
+
+body.miqt-app .btn-outline-primary {
+  --bs-btn-color: var(--miqt-cobalt);
+  --bs-btn-border-color: var(--miqt-cobalt);
+  --bs-btn-hover-bg: var(--miqt-cobalt);
+  --bs-btn-hover-border-color: var(--miqt-cobalt);
+  color: var(--miqt-cobalt);
   border-color: var(--miqt-cobalt);
 }
 
-body.miqt-app .btn-primary:hover {
-  background: var(--miqt-cobalt-dark);
-  border-color: var(--miqt-cobalt-dark);
+body.miqt-app .btn-outline-primary:hover {
+  background-color: var(--miqt-cobalt);
+  border-color: var(--miqt-cobalt);
+  color: #fff;
+}
+
+body.miqt-app .btn-outline-secondary {
+  --bs-btn-color: var(--miqt-muted);
+  --bs-btn-border-color: var(--miqt-border);
+}
+
+body.miqt-app .btn-link {
+  --bs-btn-color: var(--miqt-cobalt);
+}
+
+body.miqt-app .btn-link:hover {
+  color: var(--miqt-cobalt-dark);
 }
 
 body.miqt-app .page-title {
@@ -1265,4 +1408,48 @@ body.miqt-app .stat-card {
 
 body.miqt-app .stat-card .stat-icon {
   color: var(--miqt-cobalt);
+}
+
+/* Cards & form controls in main content */
+body.miqt-app .dashboard-card,
+body.miqt-app .card {
+  border-color: var(--miqt-border);
+  border-radius: 14px;
+}
+
+body.miqt-app .card-header {
+  background: #f7fbfe;
+  border-bottom-color: var(--miqt-border);
+  color: var(--miqt-cobalt-deep);
+}
+
+body.miqt-app .form-control:focus,
+body.miqt-app .form-select:focus {
+  border-color: var(--miqt-cobalt);
+  box-shadow: 0 0 0 0.2rem rgba(33, 118, 199, 0.2);
+}
+
+body.miqt-app .text-primary {
+  color: var(--miqt-cobalt) !important;
+}
+
+body.miqt-app .border-primary {
+  border-color: var(--miqt-cobalt) !important;
+}
+
+body.miqt-app .bg-primary {
+  background-color: var(--miqt-cobalt) !important;
+}
+
+/* Align Bootstrap “success” badges/alerts with theme (optional green → cobalt) */
+body.miqt-app .badge.bg-success,
+body.miqt-app .badge-success {
+  background-color: var(--miqt-cobalt) !important;
+  color: #fff !important;
+}
+
+body.miqt-app .alert-success {
+  background: #e8f4fc;
+  border-color: var(--miqt-sky-light);
+  color: var(--miqt-cobalt-deep);
 }
