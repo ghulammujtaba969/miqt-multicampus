@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Attendance Report - Page 2</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Calibri', 'Arial', sans-serif;
+    font-size: 11px;
+    background: #fff;
+    color: #000;
+    padding: 20px;
+  }
+
+  .page {
+    width: 740px;
+    margin: 0 auto;
+    background: #fff;
+  }
+
+  /* Header */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 6px;
+    align-items: start;
+  }
+  .header .left { text-align: left; font-size: 11px; }
+  .header .center { text-align: center; }
+  .header .institute-name { font-size: 14px; font-weight: bold; }
+  .header .report-title { font-size: 12px; font-weight: bold; }
+
+  /* Wrapper for the 3-section table layout */
+  .table-wrapper {
+    display: flex;
+    gap: 0;
+    width: 100%;
+  }
+
+  /* Each section */
+  .section {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .section-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .section-table th {
+    background-color: #c8c8c8;
+    font-weight: bold;
+    border: 1px solid #000;
+    padding: 2px 3px;
+    text-align: center;
+    font-size: 10.5px;
+    white-space: nowrap;
+  }
+
+  .section-table td {
+    border: 1px solid #000;
+    padding: 2px 3px;
+    text-align: center;
+    font-size: 10px;
+    height: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90px;
+  }
+
+  .section-table td.left-align {
+    text-align: left;
+    max-width: 100px;
+  }
+
+  .section-table td.no-col {
+    background-color: #e8e8e8;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  /* Highlighted row (row 44 in absent section) */
+  .highlight-green {
+    background-color: #ccffcc;
+  }
+
+  /* Divider between sections */
+  .divider {
+    width: 8px;
+    min-width: 8px;
+  }
+
+  /* Middle section has a No column between Absent and Leave */
+  .middle-section {
+    flex: 0 0 auto;
+    width: 50px;
+  }
+
+  .no-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .no-table th {
+    background-color: #c8c8c8;
+    font-weight: bold;
+    border: 1px solid #000;
+    padding: 2px 3px;
+    text-align: center;
+    font-size: 10.5px;
+  }
+  .no-table td {
+    border: 1px solid #000;
+    padding: 2px 3px;
+    text-align: center;
+    font-size: 10px;
+    height: 16px;
+    background-color: #e8e8e8;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="left">
+      <div>Date:02-07-2025</div>
+      <div>Day::Wednesday</div>
+    </div>
+    <div class="center">
+      <div class="institute-name">Minhaj Institute of Qira'at Tahfeez ul Quran</div>
+      <div class="report-title">Daily Attendance Report</div>
+    </div>
+    <div></div>
+  </div>
+
+  <!-- Main Content: Absent | No | Leave -->
+  <div class="table-wrapper">
+
+    <!-- ABSENT SECTION -->
+    <div class="section">
+      <table class="section-table">
+        <thead>
+          <tr>
+            <th style="width:28px;">S. No</th>
+            <th>Absent</th>
+            <th>House</th>
+            <th style="width:32px;">Days</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td class="left-align">Hammad mustafa</td><td class="left-align">S Abubakar</td><td>1</td></tr>
+          <tr><td>2</td><td class="left-align">Subhan Younas</td><td class="left-align">S ibn E abbas</td><td>1</td></tr>
+          <tr><td>3</td><td class="left-align">Usman Nadeem</td><td class="left-align">S Usman</td><td>3</td></tr>
+          <tr><td>4</td><td class="left-align">Haziq Naeem</td><td class="left-align">S ibn E Masood</td><td>1</td></tr>
+          <tr><td>5</td><td class="left-align">Haider irshad</td><td class="left-align">//</td><td>1</td></tr>
+          <tr><td>6</td><td class="left-align">Umar Tawab</td><td class="left-align">//</td><td>1</td></tr>
+          <tr><td>7</td><td class="left-align">Bilal Rashid</td><td class="left-align">S Anas</td><td>11</td></tr>
+          <tr><td>8</td><td class="left-align">Taha zahid</td><td class="left-align">S Ameer Hamza</td><td>1</td></tr>
+          <tr><td>9</td><td class="left-align">Hanan ahmad</td><td class="left-align">//</td><td>1</td></tr>
+          <tr><td>10</td><td class="left-align">Tahir ul Qadri</td><td class="left-align">s Hassan</td><td>1</td></tr>
+          <tr><td>11</td><td class="left-align">Syed ali imam</td><td class="left-align">//</td><td>1</td></tr>
+          <tr><td>12</td><td class="left-align">Talha mehmood</td><td class="left-align">//</td><td>1</td></tr>
+          <tr><td>13</td><td class="left-align">Emaad naeem</td><td class="left-align">//</td><td>1</td></tr>
+          <tr><td>14</td><td class="left-align">M Rooman</td><td class="left-align">//</td><td>1</td></tr>
+          <tr><td>15</td><td class="left-align">Ali Hassan shafi</td><td class="left-align">S ibn E Umar</td><td>3</td></tr>
+          <tr><td>16</td><td class="left-align">Syed kaif</td><td class="left-align">S Hussain</td><td>1</td></tr>
+          <tr><td>17</td><td class="left-align">Shahan maroof</td><td class="left-align">//</td><td>1</td></tr>
+          <tr><td>18</td><td class="left-align">M bin Rashid</td><td class="left-align">//</td><td>2</td></tr>
+          <tr><td>19</td><td class="left-align">Zaman asif</td><td class="left-align">S ibn e Mutlib</td><td>2</td></tr>
+          <tr><td>20</td><td class="left-align">Saqib asif</td><td class="left-align">//</td><td>2</td></tr>
+          <tr><td>21</td><td class="left-align">Hassan Naeem</td><td class="left-align">Ammar bin Yasir</td><td>1</td></tr>
+          <tr><td>22</td><td class="left-align">M Zubair</td><td class="left-align">//</td><td>1</td></tr>
+          <tr><td>23</td><td class="left-align">Hussain latif</td><td class="left-align">S Ali</td><td>3</td></tr>
+          <tr><td>24</td><td class="left-align">Mujtaba nadeem</td><td class="left-align">//</td><td>1</td></tr>
+          <tr><td>25</td><td class="left-align">SULEMAN Naeem</td><td class="left-align">S Moaz</td><td>1</td></tr>
+          <tr><td>26</td><td class="left-align">Ebad naeem</td><td class="left-align">//</td><td>1</td></tr>
+          <tr><td>27</td><td class="left-align">Abdul rehman azi</td><td class="left-align">//</td><td>2</td></tr>
+          <tr><td>28</td><td class="left-align">irtisam mansoor</td><td class="left-align">//</td><td>1</td></tr>
+          <tr><td>29</td><td class="left-align">Muneeb Tariq</td><td class="left-align">S Zaid</td><td>3</td></tr>
+          <tr><td>30</td><td class="left-align">Shaheer ahmad</td><td class="left-align">//</td><td>1</td></tr>
+          <tr><td>31</td><td class="left-align">Ahsan Waqas</td><td class="left-align">S Abdul Qadir</td><td>1</td></tr>
+          <tr><td>32</td><td></td><td></td><td></td></tr>
+          <tr><td>33</td><td></td><td></td><td></td></tr>
+          <tr><td>34</td><td></td><td></td><td></td></tr>
+          <tr><td>35</td><td></td><td></td><td></td></tr>
+          <tr><td>36</td><td></td><td></td><td></td></tr>
+          <tr><td>37</td><td></td><td></td><td></td></tr>
+          <tr><td>38</td><td></td><td></td><td></td></tr>
+          <tr><td>39</td><td></td><td></td><td></td></tr>
+          <tr><td>40</td><td></td><td></td><td></td></tr>
+          <tr><td>41</td><td></td><td></td><td></td></tr>
+          <tr><td>42</td><td></td><td></td><td></td></tr>
+          <tr><td>43</td><td></td><td></td><td></td></tr>
+          <tr class="highlight-green"><td>44</td><td></td><td></td><td></td></tr>
+          <tr><td>45</td><td></td><td></td><td></td></tr>
+          <tr><td>46</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- NO COLUMN (middle) -->
+    <div class="middle-section">
+      <table class="no-table">
+        <thead>
+          <tr><th>No</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>50</td></tr>
+          <tr><td>51</td></tr>
+          <tr><td>52</td></tr>
+          <tr><td>53</td></tr>
+          <tr><td>54</td></tr>
+          <tr><td>55</td></tr>
+          <tr><td>56</td></tr>
+          <tr><td>57</td></tr>
+          <tr><td>58</td></tr>
+          <tr><td>59</td></tr>
+          <tr><td>60</td></tr>
+          <tr><td>61</td></tr>
+          <tr><td>62</td></tr>
+          <tr><td>63</td></tr>
+          <tr><td>64</td></tr>
+          <tr><td>65</td></tr>
+          <tr><td>66</td></tr>
+          <tr><td>67</td></tr>
+          <tr><td>68</td></tr>
+          <tr><td>69</td></tr>
+          <tr><td>70</td></tr>
+          <tr><td>71</td></tr>
+          <tr><td>72</td></tr>
+          <tr><td>73</td></tr>
+          <tr><td>74</td></tr>
+          <tr><td>75</td></tr>
+          <tr><td>76</td></tr>
+          <tr><td>77</td></tr>
+          <tr><td>78</td></tr>
+          <tr><td>79</td></tr>
+          <tr><td>80</td></tr>
+          <tr><td>81</td></tr>
+          <tr><td>82</td></tr>
+          <tr><td>83</td></tr>
+          <tr><td>84</td></tr>
+          <tr><td>85</td></tr>
+          <tr><td>86</td></tr>
+          <tr><td>87</td></tr>
+          <tr><td>88</td></tr>
+          <tr><td>89</td></tr>
+          <tr><td>90</td></tr>
+          <tr><td>91</td></tr>
+          <tr><td>92</td></tr>
+          <tr><td>93</td></tr>
+          <tr><td>94</td></tr>
+          <tr><td>95</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SMALL DIVIDER -->
+    <div class="divider"></div>
+
+    <!-- LEAVE SECTION -->
+    <div class="section">
+      <table class="section-table">
+        <thead>
+          <tr>
+            <th style="width:28px;">S. No</th>
+            <th>Leave</th>
+            <th>House</th>
+            <th style="width:32px;">Days</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td class="left-align">Abdul rehman Z</td><td class="left-align">S Abubakar</td><td>5</td></tr>
+          <tr><td>2</td><td class="left-align">Mian Malik</td><td class="left-align">Bilal Bin Rabah</td><td>6</td></tr>
+          <tr><td>3</td><td class="left-align">Shahryar Hussai</td><td class="left-align">S ibn E Abbas</td><td>1</td></tr>
+          <tr><td>4</td><td class="left-align">Abrish</td><td class="left-align">S Usman</td><td>2</td></tr>
+          <tr><td>5</td><td class="left-align">Aown abbas</td><td class="left-align">S Anas</td><td>15</td></tr>
+          <tr><td>6</td><td class="left-align">Zain mustafa</td><td class="left-align">//</td><td>15</td></tr>
+          <tr><td>7</td><td class="left-align">Tayyab Siraj</td><td class="left-align">Ameer Hamza</td><td>1</td></tr>
+          <tr><td>8</td><td class="left-align">M Yousaf</td><td class="left-align">S Hassan</td><td>19</td></tr>
+          <tr><td>9</td><td class="left-align">Hassaan</td><td class="left-align">S ibn E Umar</td><td>3</td></tr>
+          <tr><td>10</td><td class="left-align">Mohad Azam</td><td class="left-align">S Hussain</td><td>1</td></tr>
+          <tr><td>11</td><td class="left-align">Mohsin Shah</td><td class="left-align">Ammar bin Yasir</td><td>20</td></tr>
+          <tr><td>12</td><td class="left-align">Bilal zulfiqar</td><td class="left-align">S Ali</td><td>26</td></tr>
+          <tr><td>13</td><td class="left-align">Syed Moiyad</td><td class="left-align">S Moaz</td><td>1</td></tr>
+          <tr><td>14</td><td class="left-align">Moiz usman</td><td class="left-align">S Zaid</td><td>6</td></tr>
+          <tr><td>15</td><td class="left-align">Hamza imran</td><td class="left-align">S Abdul Qadir</td><td>12</td></tr>
+          <tr><td>16</td><td></td><td></td><td></td></tr>
+          <tr><td>17</td><td></td><td></td><td></td></tr>
+          <tr><td>18</td><td></td><td></td><td></td></tr>
+          <tr><td>19</td><td></td><td></td><td></td></tr>
+          <tr><td>20</td><td></td><td></td><td></td></tr>
+          <tr><td>21</td><td></td><td></td><td></td></tr>
+          <tr><td>22</td><td></td><td></td><td></td></tr>
+          <tr><td>23</td><td></td><td></td><td></td></tr>
+          <tr><td>24</td><td></td><td></td><td></td></tr>
+          <tr><td>25</td><td></td><td></td><td></td></tr>
+          <tr><td>26</td><td></td><td></td><td></td></tr>
+          <tr><td>27</td><td></td><td></td><td></td></tr>
+          <tr><td>28</td><td></td><td></td><td></td></tr>
+          <tr><td>29</td><td></td><td></td><td></td></tr>
+          <tr><td>30</td><td></td><td></td><td></td></tr>
+          <tr><td>31</td><td></td><td></td><td></td></tr>
+          <tr><td>32</td><td></td><td></td><td></td></tr>
+          <tr><td>33</td><td></td><td></td><td></td></tr>
+          <tr><td>34</td><td></td><td></td><td></td></tr>
+          <tr><td>35</td><td></td><td></td><td></td></tr>
+          <tr><td>36</td><td></td><td></td><td></td></tr>
+          <tr><td>37</td><td></td><td></td><td></td></tr>
+          <tr><td>38</td><td></td><td></td><td></td></tr>
+          <tr><td>39</td><td></td><td></td><td></td></tr>
+          <tr><td>40</td><td></td><td></td><td></td></tr>
+          <tr><td>41</td><td></td><td></td><td></td></tr>
+          <tr><td>42</td><td></td><td></td><td></td></tr>
+          <tr><td>43</td><td></td><td></td><td></td></tr>
+          <tr><td>44</td><td></td><td></td><td></td></tr>
+          <tr><td>45</td><td></td><td></td><td></td></tr>
+          <tr><td>46</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- end table-wrapper -->
+
+</div>
+</body>
+</html>

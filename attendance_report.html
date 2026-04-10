@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Attendance Report - Minhaj Institute</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Calibri', 'Arial', sans-serif;
+    font-size: 11px;
+    background: #fff;
+    color: #000;
+    padding: 20px;
+  }
+
+  .page {
+    width: 720px;
+    margin: 0 auto;
+    background: #fff;
+  }
+
+  /* Header */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 4px;
+  }
+  .header .left { text-align: left; }
+  .header .center { text-align: center; font-weight: bold; font-size: 13px; }
+  .header .right { text-align: right; }
+  .header .date-line { font-size: 11px; }
+  .header .institute-name { font-size: 14px; font-weight: bold; }
+  .header .report-title { font-size: 12px; font-weight: bold; }
+
+  /* Main Table */
+  .main-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+  }
+
+  .main-table th, .main-table td {
+    border: 1px solid #000;
+    padding: 2px 4px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .main-table th {
+    background-color: #d0d0d0;
+    font-weight: bold;
+    font-size: 11px;
+  }
+
+  .main-table td.left-align {
+    text-align: left;
+  }
+
+  .main-table .total-row td {
+    font-weight: bold;
+    background-color: #f0f0f0;
+  }
+
+  /* Summary Tables */
+  .summary-section {
+    margin-bottom: 10px;
+  }
+
+  .summary-table {
+    border-collapse: collapse;
+    margin-bottom: 14px;
+  }
+
+  .summary-table th, .summary-table td {
+    border: 1px solid #000;
+    padding: 2px 6px;
+    text-align: center;
+    font-size: 11px;
+    min-width: 60px;
+  }
+
+  .summary-table th {
+    background-color: #d0d0d0;
+    font-weight: bold;
+  }
+
+  .summary-table td.label-cell {
+    background-color: #a0a0a0;
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+  }
+
+  .summary-table .total-row td {
+    background-color: #d0d0d0;
+    font-weight: bold;
+  }
+
+  .summary-table .total-row td.label-cell {
+    background-color: #888;
+  }
+
+  /* Signature Section */
+  .signature-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding: 0 10px;
+  }
+
+  .sig-box {
+    text-align: center;
+    border-top: 1px solid #000;
+    padding-top: 4px;
+    min-width: 120px;
+    font-size: 11px;
+  }
+
+  .empty-row {
+    height: 6px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="left">
+      <div class="date-line">Date:02-07-2025</div>
+      <div class="date-line">Day::Wednesday</div>
+    </div>
+    <div class="center">
+      <div class="institute-name">Minhaj Institute of Qira'at Tahfeez ul Quran</div>
+      <div class="report-title">Daily Attendance Report</div>
+    </div>
+    <div class="right"></div>
+  </div>
+
+  <!-- Main Attendance Table -->
+  <table class="main-table">
+    <thead>
+      <tr>
+        <th>S. No</th>
+        <th>Name of House</th>
+        <th>Teacher</th>
+        <th>Grade</th>
+        <th>T. S.</th>
+        <th>B/D</th>
+        <th>D / S</th>
+        <th>Orp</th>
+        <th>P</th>
+        <th>A</th>
+        <th>L</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td class="left-align">S. Abu Musa Ashaari</td><td class="left-align">Q. Khizar Zeeshan</td><td>G-6</td><td>16</td><td>16</td><td>3</td><td>0</td><td>16</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>2</td><td class="left-align">S. Zain ul Abidin</td><td class="left-align">Q. Inaam ullah</td><td>G-5</td><td>25</td><td>16</td><td>8</td><td>1</td><td>25</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>3</td><td class="left-align">S. Abubakar Siddique</td><td class="left-align">Q. Mehboob</td><td>B-4</td><td>26</td><td>22</td><td>3</td><td>1</td><td>24</td><td>1</td><td>1</td><td>2</td></tr>
+      <tr><td>4</td><td class="left-align">S. Umar bin Khatab</td><td class="left-align">Q. Sufyan</td><td>B-4</td><td>25</td><td>22</td><td>3</td><td>0</td><td>25</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>5</td><td class="left-align">S. Bilal bin Rabah</td><td class="left-align">Q. M Fiaz</td><td>B-4</td><td>21</td><td>20</td><td>1</td><td>0</td><td>20</td><td>0</td><td>1</td><td>1</td></tr>
+      <tr><td>6</td><td class="left-align">S. Abdullah bin Abbas</td><td class="left-align">Q. Tayyab</td><td>D-4</td><td>27</td><td>4</td><td>21</td><td>2</td><td>25</td><td>1</td><td>1</td><td>2</td></tr>
+      <tr><td>7</td><td class="left-align">S. Usman bin Afan</td><td class="left-align">Q. Zaman</td><td>B-3</td><td>24</td><td>23</td><td>0</td><td>1</td><td>22</td><td>1</td><td>1</td><td>2</td></tr>
+      <tr><td>8</td><td class="left-align">S. Ibn E Masood</td><td class="left-align">Q. Nouman</td><td>B-3</td><td>16</td><td>0</td><td>16</td><td>0</td><td>13</td><td>0</td><td>3</td><td>3</td></tr>
+      <tr><td>9</td><td class="left-align">S. Anas bin Malik</td><td class="left-align">Q. M zahid</td><td>B-2</td><td>23</td><td>23</td><td>0</td><td>0</td><td>20</td><td>1</td><td>2</td><td>3</td></tr>
+      <tr><td>10</td><td class="left-align">S.Salman Farsi</td><td class="left-align">Q. Zia ur rehman</td><td>B-3</td><td>21</td><td>20</td><td>1</td><td>0</td><td>21</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>11</td><td class="left-align">S. Ameer Hamza</td><td class="left-align">Q. Abdullah</td><td>D-3</td><td>23</td><td>0</td><td>23</td><td>0</td><td>20</td><td>2</td><td>1</td><td>3</td></tr>
+      <tr><td>12</td><td class="left-align">S. Hassan Bin Ali</td><td class="left-align">Q. Abdul Aziz</td><td>D-3</td><td>25</td><td>0</td><td>25</td><td>0</td><td>19</td><td>5</td><td>1</td><td>6</td></tr>
+      <tr><td>13</td><td class="left-align">S. Abdullah bin Umar</td><td class="left-align">Q. Abdul Latif</td><td>B-2</td><td>23</td><td>21</td><td>2</td><td>0</td><td>21</td><td>1</td><td>1</td><td>2</td></tr>
+      <tr><td>14</td><td class="left-align">S. Mosab bin Umair</td><td class="left-align">Q. Sultan Mehmood</td><td>B-2</td><td>21</td><td>21</td><td>0</td><td>0</td><td>21</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>15</td><td class="left-align">S. Hussain</td><td class="left-align">Q. M. imran</td><td>B-2</td><td>24</td><td>0</td><td>24</td><td>0</td><td>20</td><td>3</td><td>1</td><td>4</td></tr>
+      <tr><td>16</td><td class="left-align">S. Abdullah Bin A.M.</td><td class="left-align">Q. M. Asif</td><td>D-2</td><td>26</td><td>22</td><td>4</td><td>0</td><td>24</td><td>2</td><td>0</td><td>2</td></tr>
+      <tr><td>17</td><td class="left-align">S. Ammar Bin Yasir</td><td class="left-align">Q. Anees ur rehman</td><td>D-2</td><td>25</td><td>0</td><td>25</td><td>0</td><td>22</td><td>2</td><td>1</td><td>3</td></tr>
+      <tr><td>18</td><td class="left-align">S. Ali Bin Abi Talib</td><td class="left-align">Q. M Hussain</td><td>D-2</td><td>24</td><td>0</td><td>24</td><td>0</td><td>21</td><td>2</td><td>1</td><td>3</td></tr>
+      <tr><td>19</td><td class="left-align">S. Moaz Bin Jabal</td><td class="left-align">Q. Ab. Khaliq</td><td>D-2</td><td>27</td><td>0</td><td>27</td><td>0</td><td>22</td><td>4</td><td>1</td><td>5</td></tr>
+      <tr><td>20</td><td class="left-align">S. Ubai bin Kaab</td><td class="left-align">Q. M kashif</td><td>B-2</td><td>26</td><td>0</td><td>26</td><td>0</td><td>26</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>21</td><td class="left-align">S. Zaid Bin Sabit</td><td class="left-align">Q. M ilyas</td><td>B-2</td><td>39</td><td>31</td><td>7</td><td>1</td><td>36</td><td>2</td><td>1</td><td>3</td></tr>
+      <tr><td>22</td><td class="left-align">S. Abdul Qadir Jeelani</td><td class="left-align">Q. abdul malik</td><td>B-2</td><td>29</td><td>28</td><td>1</td><td>0</td><td>27</td><td>1</td><td>1</td><td>2</td></tr>
+      <tr><td>23</td><td class="left-align">S. Tahir Allauddin</td><td class="left-align">Q. M . Arif</td><td>G-1</td><td>28</td><td>27</td><td>0</td><td>1</td><td>28</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr class="total-row">
+        <td colspan="4"><strong>Total</strong></td>
+        <td>564</td><td>313</td><td>244</td><td>7</td><td>518</td><td>31</td><td>15</td><td>46</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Summary Tables -->
+  <div style="display: flex; gap: 30px; align-items: flex-start;">
+
+    <!-- Student Summary Table -->
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th style="background:#fff; border:none;"></th>
+          <th>Present</th>
+          <th>Absent</th>
+          <th>Leave</th>
+          <th>Total</th>
+          <th>Sick leav</th>
+          <th>New</th>
+          <th>Left</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label-cell">Boarder</td>
+          <td>300</td><td>4</td><td>9</td><td>313</td><td>1</td><td>0</td><td>1</td>
+        </tr>
+        <tr>
+          <td class="label-cell">DayScholar</td>
+          <td>211</td><td>27</td><td>6</td><td>244</td><td>0</td><td>0</td><td>2</td>
+        </tr>
+        <tr>
+          <td class="label-cell">Orphan</td>
+          <td>7</td><td>0</td><td>0</td><td>7</td><td>0</td><td>0</td><td>0</td>
+        </tr>
+        <tr class="total-row">
+          <td class="label-cell" style="background:#888;">Total</td>
+          <td>518</td><td>31</td><td>15</td><td>564</td><td>1</td><td>0</td><td>3</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Teacher Summary Table -->
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th style="background:#fff; border:none;"></th>
+          <th>Present</th>
+          <th>Absent</th>
+          <th>Leave</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label-cell">Teacher</td>
+          <td>23</td><td>0</td><td>0</td><td>23</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <!-- Signature Section -->
+  <div class="signature-section">
+    <div class="sig-box">Hostel Warden</div>
+    <div class="sig-box">Coordinator</div>
+    <div class="sig-box">V. Principal</div>
+    <div class="sig-box">Principal</div>
+  </div>
+
+</div>
+</body>
+</html>
