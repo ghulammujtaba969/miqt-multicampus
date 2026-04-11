@@ -129,3 +129,70 @@ Details:
   - key files
   - maintenance considerations
   - change tracking location
+
+## 2026-04-10 — MIQT Primary theme, new pages, and configuration
+
+### Theme and assets
+
+Files changed (representative):
+
+- `assets/css/theme-primary.css` — MIQT palette, app shell, login split layout, dashboard/students components, Bootstrap button overrides, table action styling
+- `assets/css/theme-pages.css` — calendar, email demo, profile, settings hub, `miqt-form-section` form cards
+- `assets/css/style.css` — alignment with theme variables and sidebar logo behavior
+- `includes/header.php`, `includes/header_teacher.php`, `includes/header_student.php`, `includes/header_parent.php` — fonts, theme CSS order, favicon/logo (`MIQT_LOGO_URL`), sidebar entries (Profile, Email where permitted)
+- `includes/footer.php`, `assets/js/main.js` — sidebar toggle / accessibility fixes
+- `includes/functions.php` — `getUserInitials()` for avatars
+- `index.php` — themed login; logo/favicon
+- `modules/dashboard/index.php`, `modules/students/students.php` — themed layouts
+
+Details:
+
+- Design reference: `themes/primary` HTML mocks (login, dashboard, students, calendar, email, forms, profile, settings).
+- Logo path: `assets/img/favicon.png` exposed as `MIQT_LOGO_URL` in `config/config.php`.
+
+### Calendar, settings, email, profile
+
+Files changed:
+
+- `modules/calendar/index.php` — month grid, mini calendar, upcoming events, themed controls
+- `modules/settings/settings.php` — left nav sections; institute form still POSTs to `settings` table; other sections mix live stats, reference UI, and placeholders
+- `modules/email/index.php` (new) — demo inbox UI only (principal / vice_principal / coordinator)
+- `modules/profile/index.php` (new) — session user + optional `teachers` row; tabs; HR links when permitted
+
+### Student and HR forms (theme form sections)
+
+Files changed:
+
+- `modules/students/add_student.php`, `modules/students/edit_student.php`
+- `modules/hr/add_staff.php`, `modules/hr/edit_staff.php`, `modules/hr/add_teacher.php`, `modules/hr/edit_teacher.php`
+
+Details:
+
+- Replaced flat `dashboard-card` layout with `miqt-forms-page-header`, breadcrumbs, and `miqt-form-section` blocks matching the Forms mock.
+
+### Configuration and deployment
+
+Files changed:
+
+- `config/config.php` — optional `config.local.php` load; conditional DB/SITE defaults; `SITE_URL` from `MIQT_SITE_URL` or auto-detect (HTTPS, host, path under `DOCUMENT_ROOT`); `MIQT_LOGO_URL`; local vs production `display_errors` / `log_errors`
+- `config/database.php` — `require_once __DIR__ . '/config.php'`
+- `config/config.local.example.php` — template for live-only `config.local.php` (placeholders only)
+- `.gitignore` — `config/config.local.php` excluded from commits
+
+Details:
+
+- Production credentials belong in `config/config.local.php` on the server only, not in the shared repo copy.
+- Resolves common “blank / unstyled page” after deploy when `SITE_URL` still pointed at localhost.
+
+### Documentation
+
+Files changed:
+
+- `README.md` — technology stack, assets, modules (`email`, `profile`), configuration (`config.local`, auto `SITE_URL`, error logging), recent custom work, setup step for production
+- `AGENT_CHANGELOG.md` — this section (theme, calendar/settings/email/profile, themed forms, deployment config, doc refresh)
+
+### Verification performed
+
+Details:
+
+- `php -l` on touched PHP modules during theme and config work (no syntax errors reported in session).

@@ -97,7 +97,7 @@ The application is designed for institute administration and daily academic oper
 ### Academic calendar
 
 - Add and manage academic events
-- Calendar view
+- Calendar view (MIQT-themed month grid, mini calendar, upcoming events sidebar)
 - Upcoming events listing
 
 ### Reporting and exports
@@ -135,6 +135,9 @@ Main directories:
   - uploaded photos and import files
 - `assets/`
   - CSS and JavaScript
+  - `assets/css/theme-primary.css` — main theme variables and layout
+  - `assets/css/theme-pages.css` — page-specific layouts (calendar, email, profile, settings, form cards)
+  - `assets/img/favicon.png` — logo / favicon (`MIQT_LOGO_URL` in config)
 - `vendor/`
   - Composer dependencies
 
@@ -152,6 +155,8 @@ Feature modules inside `modules/`:
 - `reports/`
 - `settings/`
 - `students/`
+- `email/` — internal email **demo UI** (no mail server; principal / vice_principal / coordinator)
+- `profile/` — signed-in user profile (links to HR records when applicable)
 
 ## Technology Stack
 
@@ -159,8 +164,10 @@ Feature modules inside `modules/`:
 - MySQL / MariaDB
 - PDO for database access
 - HTML / CSS / JavaScript
-- Bootstrap for UI support
+- Bootstrap5 for UI support
 - Font Awesome for icons
+- **MIQT Primary** theme: `assets/css/theme-primary.css` (app shell, login, dashboard/students patterns) and `assets/css/theme-pages.css` (calendar, email demo, profile, settings, form sections)
+- Google Fonts: **Sora** and **Lora** (see `includes/header.php`)
 - `mpdf/mpdf` for PDF export
 
 Composer dependency:
@@ -175,16 +182,27 @@ Composer dependency:
 
 ## Configuration
 
-Primary config file:
+Primary files:
 
-- `config/config.php`
+- `config/config.php` — defaults, optional auto-detection of `SITE_URL` on the web, paths, sessions
+- `config/database.php` — PDO bootstrap (`require_once __DIR__ . '/config.php'`)
+- `config/config.local.php` — **optional**; create on the server for production DB credentials and `SITE_URL` (not committed; see `.gitignore`)
+- `config/config.local.example.php` — copy/rename pattern for `config.local.php`
 
-Current local configuration values in the project:
+Behavior:
+
+- If **`config/config.local.php` exists**, it is loaded first. Define there: `DB_HOST`, `DB_USER`, `DB_PASS`, `DB_NAME`, `SITE_NAME`, `SITE_URL` (and optionally `MIQT_LOGO_URL`) for production.
+- If **`SITE_URL` is not defined** after that, the app sets it from `MIQT_SITE_URL` (environment variable) or **auto-detects** `https`/`http`, host, and path under `DOCUMENT_ROOT` (works for subdirectory installs).
+- **`MIQT_LOGO_URL`** defaults to `SITE_URL` + `assets/img/favicon.png`.
+- **Error display**: PHP errors are shown in the browser only on `localhost` / `127.0.0.1`; on other hosts errors are logged (`log_errors`) — check the server **error_log** if pages are blank.
+
+Default values in `config.php` when no `config.local.php` is used (typical **local XAMPP**):
 
 - database host: `localhost`
 - database user: `root`
+- database password: empty
 - database name: `u921830511_miqt`
-- site URL: `http://localhost/miqt/02-04-2026-miqt/`
+- site URL: `http://localhost/miqt/02-04-2026-miqt/` (fallback when not on the web or when auto-detect is skipped)
 - timezone: `Asia/Karachi`
 
 ## Database Notes
@@ -212,14 +230,21 @@ If you set up a fresh environment, verify that the imported database matches the
 
 Recent project additions include:
 
-- `modules/students/bulk_assign_classes.php`
+- **MIQT Primary UI** — login split layout, themed sidebar/topbar, dashboard and student list styling, Bootstrap button palette overrides, shared logo/favicon via `MIQT_LOGO_URL`.
+- **`assets/css/theme-pages.css`** — calendar layout, email demo, profile, settings navigation, reusable **form section** cards (`miqt-form-section`) used on student and HR forms.
+- **`modules/calendar/index.php`** — redesigned calendar page aligned with theme mocks.
+- **`modules/settings/settings.php`** — settings hub with section navigation (institute form still saves to `settings` table; other sections include reference/demo UI).
+- **`modules/email/index.php`** — three-panel email **demo** (no SMTP).
+- **`modules/profile/index.php`** — profile hero and tabs from session/DB (teacher record link when applicable).
+- **`modules/students/bulk_assign_classes.php`**
   - bulk assignment of current class (`class_id`)
-- `modules/students/bulk_assign_school_classes.php`
+- **`modules/students/bulk_assign_school_classes.php`**
   - bulk assignment of school class (`current_school_class`)
-- `current_school_class` converted from free text to class ID selection in:
+- **`current_school_class`** converted from free text to class ID selection in:
   - `modules/students/add_student.php`
   - `modules/students/edit_student.php`
   - `modules/students/view_student.php`
+- **Themed long forms** — `add_student.php`, `edit_student.php`, `modules/hr/add_staff.php`, `edit_staff.php`, `add_teacher.php`, `edit_teacher.php` use the same section card pattern as the theme **Forms** mock.
 
 ## Setup
 
@@ -227,7 +252,7 @@ Typical local setup steps:
 
 1. Place the project inside your local PHP server root.
 2. Import the correct MySQL database.
-3. Update `config/config.php` if your database name, URL, or credentials differ.
+3. For **local dev**, either rely on defaults in `config/config.php` or adjust them there. For **production**, add **`config/config.local.php`** (see `config.local.example.php`) with live DB settings and `SITE_URL`; do not commit `config.local.php`.
 4. Install Composer dependencies if needed:
 
 ```bash
@@ -242,7 +267,9 @@ composer install
 - `index.php`
   - login page
 - `config/config.php`
-  - application settings
+  - application settings and optional `SITE_URL` auto-detection
+- `config/config.local.example.php`
+  - template for server-only `config.local.php`
 - `config/database.php`
   - PDO connection wrapper
 - `includes/functions.php`
