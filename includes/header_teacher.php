@@ -13,6 +13,8 @@ if (!isLoggedIn() || getUserRole() != 'teacher') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($pageTitle) ? $pageTitle . ' - ' . SITE_NAME : SITE_NAME; ?></title>
+    <link rel="icon" type="image/png" href="<?php echo MIQT_LOGO_URL; ?>">
+    <link rel="apple-touch-icon" href="<?php echo MIQT_LOGO_URL; ?>">
     <!-- Bootstrap CSS (global) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- App styles (load after Bootstrap to allow overrides) -->
@@ -25,6 +27,7 @@ if (!isLoggedIn() || getUserRole() != 'teacher') {
         <!-- Sidebar -->
         <nav class="sidebar">
             <div class="sidebar-header">
+                <img src="<?php echo MIQT_LOGO_URL; ?>" alt="" class="sidebar-header-logo" width="48" height="48" decoding="async">
                 <h3>MIQT System</h3>
                 <p class="text-sm"><?php echo getUserName(); ?></p>
                 <p class="text-xs">Teacher</p>

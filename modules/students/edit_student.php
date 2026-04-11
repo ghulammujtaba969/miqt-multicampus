@@ -201,20 +201,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 require_once '../../includes/header.php';
 ?>
 
-<div class="page-header">
-    <h1 class="page-title">Edit Student</h1>
-    <p class="subtitle"><?php echo $student['student_id']; ?> - <?php echo $student['first_name'] . ' ' . $student['last_name']; ?></p>
+<div class="miqt-forms-page-header">
+    <h2>Edit student</h2>
+    <div class="miqt-breadcrumb-custom">
+        <a href="<?php echo SITE_URL; ?>/modules/dashboard/index.php">Dashboard</a>
+        <span class="sep">›</span>
+        <a href="students.php">Students</a>
+        <span class="sep">›</span>
+        <a href="view_student.php?id=<?php echo (int)$student_id; ?>">View</a>
+        <span class="sep">›</span>
+        <span>Edit</span>
+    </div>
 </div>
+<p class="text-muted small mb-3"><?php echo htmlspecialchars($student['student_id']); ?> — <?php echo htmlspecialchars($student['first_name'] . ' ' . $student['last_name']); ?></p>
 
 <?php if (isset($error)): ?>
 <div class="alert alert-danger"><?php echo $error; ?></div>
 <?php endif; ?>
 
-<div class="dashboard-card">
-    <div class="card-body">
-        <form method="POST" action="" enctype="multipart/form-data">
-            <h3 class="mb-20">Personal Information</h3>
-
+<form method="POST" action="" enctype="multipart/form-data">
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-user-graduate"></i></div>
+        <div>
+            <h3>Student record</h3>
+            <p>Personal details, class, and status</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="admission_no">Admission Number *</label>
@@ -346,9 +360,18 @@ require_once '../../includes/header.php';
                 </small>
                 <?php endif; ?>
             </div>
+    </div>
+</div>
 
-            <h3 class="mb-20 mt-20">Contact Information</h3>
-
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-address-book"></i></div>
+        <div>
+            <h3>Contact information</h3>
+            <p>Guardian and student contact details</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="guardian_name">Guardian Name *</label>
@@ -402,8 +425,18 @@ require_once '../../includes/header.php';
                 <label for="address">Address</label>
                 <textarea name="address" id="address" class="form-control" rows="2"><?php echo htmlspecialchars($student['address'] ?? ''); ?></textarea>
             </div>
+    </div>
+</div>
 
-            <h3 class="mb-20 mt-20">Login Account</h3>
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-key"></i></div>
+        <div>
+            <h3>Login account</h3>
+            <p>Portal access for this student</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <?php if ($student['username']): ?>
             <div class="alert alert-info">
                 <i class="fas fa-info-circle"></i> Login Account: <strong><?php echo htmlspecialchars($student['username']); ?></strong>
@@ -445,9 +478,18 @@ require_once '../../includes/header.php';
                 </div>
             </div>
             <?php endif; ?>
+    </div>
+</div>
 
-            <h3 class="mb-20 mt-20">Previous school &amp; last result</h3>
-
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-school"></i></div>
+        <div>
+            <h3>Previous school &amp; last result</h3>
+            <p>Prior class and result card</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="previous_school_class">Previous school class</label>
@@ -513,9 +555,18 @@ require_once '../../includes/header.php';
                 </small>
                 <?php endif; ?>
             </div>
+    </div>
+</div>
 
-            <h3 class="mb-20 mt-20">Leaving (if applicable)</h3>
-
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-door-open"></i></div>
+        <div>
+            <h3>Leaving (if applicable)</h3>
+            <p>When the student has left the institute</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="date_of_leaving">Date of leaving</label>
@@ -528,9 +579,18 @@ require_once '../../includes/header.php';
                            value="<?php echo htmlspecialchars($student['reason_of_leaving'] ?? ''); ?>">
                 </div>
             </div>
+    </div>
+</div>
 
-            <h3 class="mb-20 mt-20">Additional Information</h3>
-
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-notes-medical"></i></div>
+        <div>
+            <h3>Additional information</h3>
+            <p>Education history, medical notes, and save</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-group">
                 <label for="previous_education">Previous Education</label>
                 <textarea name="previous_education" id="previous_education" class="form-control" rows="3"><?php echo htmlspecialchars($student['previous_education'] ?? ''); ?></textarea>
@@ -541,17 +601,17 @@ require_once '../../includes/header.php';
                 <textarea name="medical_info" id="medical_info" class="form-control" rows="3"><?php echo htmlspecialchars($student['medical_info'] ?? ''); ?></textarea>
             </div>
 
-            <div class="form-group">
+            <div class="miqt-form-actions-bar mt-2">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Update Student
+                    <i class="fas fa-save"></i> Update student
                 </button>
                 <a href="view_student.php?id=<?php echo $student_id; ?>" class="btn btn-secondary">
                     <i class="fas fa-times"></i> Cancel
                 </a>
             </div>
-        </form>
     </div>
 </div>
+</form>
 
 <script>
 const createLoginCheckbox = document.getElementById('create_login');

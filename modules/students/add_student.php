@@ -157,20 +157,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 require_once '../../includes/header.php';
 ?>
 
-<div class="page-header">
-    <h1 class="page-title">Add New Student</h1>
-    <p class="subtitle">Enter student information</p>
+<div class="miqt-forms-page-header">
+    <h2>Add new student</h2>
+    <div class="miqt-breadcrumb-custom">
+        <a href="<?php echo SITE_URL; ?>/modules/dashboard/index.php">Dashboard</a>
+        <span class="sep">›</span>
+        <a href="students.php">Students</a>
+        <span class="sep">›</span>
+        <span>Add</span>
+    </div>
 </div>
 
 <?php if ($error): ?>
 <div class="alert alert-danger"><?php echo $error; ?></div>
 <?php endif; ?>
 
-<div class="dashboard-card">
-    <div class="card-body">
-        <form method="POST" action="" enctype="multipart/form-data">
-            <h3 class="mb-20">Personal Information</h3>
-
+<form method="POST" action="" enctype="multipart/form-data">
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-user-graduate"></i></div>
+        <div>
+            <h3>Student admission</h3>
+            <p>Personal details and class assignment</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="admission_no">Admission Number *</label>
@@ -271,9 +282,18 @@ require_once '../../includes/header.php';
                     <input type="file" name="photo" id="photo" class="form-control" accept="image/*">
                 </div>
             </div>
+    </div>
+</div>
 
-            <h3 class="mb-20 mt-20">Contact Information</h3>
-
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-address-book"></i></div>
+        <div>
+            <h3>Contact information</h3>
+            <p>Guardian and student contact details</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="guardian_name">Guardian Name *</label>
@@ -320,8 +340,18 @@ require_once '../../includes/header.php';
                 <label for="address">Address</label>
                 <textarea name="address" id="address" class="form-control"></textarea>
             </div>
+    </div>
+</div>
 
-            <h3 class="mb-20 mt-20">Login Account (Optional)</h3>
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-key"></i></div>
+        <div>
+            <h3>Login account (optional)</h3>
+            <p>Create portal access for this student</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-group">
                 <label>
                     <input type="checkbox" name="create_login" id="create_login" value="1"> Create Login Account
@@ -341,9 +371,18 @@ require_once '../../includes/header.php';
                     </div>
                 </div>
             </div>
+    </div>
+</div>
 
-            <h3 class="mb-20 mt-20">Previous school &amp; last result</h3>
-
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-school"></i></div>
+        <div>
+            <h3>Previous school &amp; last result</h3>
+            <p>Prior class and result card</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="previous_school_class">Previous school class</label>
@@ -390,9 +429,18 @@ require_once '../../includes/header.php';
                 <label for="previous_result_card">Previous result card (image)</label>
                 <input type="file" name="previous_result_card" id="previous_result_card" class="form-control" accept="image/jpeg,image/png,image/jpg">
             </div>
+    </div>
+</div>
 
-            <h3 class="mb-20 mt-20">Leaving (if applicable)</h3>
-
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-door-open"></i></div>
+        <div>
+            <h3>Leaving (if applicable)</h3>
+            <p>Only when student has left</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="date_of_leaving">Date of leaving</label>
@@ -403,9 +451,18 @@ require_once '../../includes/header.php';
                     <input type="text" name="reason_of_leaving" id="reason_of_leaving" class="form-control">
                 </div>
             </div>
+    </div>
+</div>
 
-            <h3 class="mb-20 mt-20">Additional Information</h3>
-
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-notes-medical"></i></div>
+        <div>
+            <h3>Additional information</h3>
+            <p>Education history and medical notes</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-group">
                 <label for="previous_education">Previous Education</label>
                 <textarea name="previous_education" id="previous_education" class="form-control"></textarea>
@@ -416,17 +473,17 @@ require_once '../../includes/header.php';
                 <textarea name="medical_info" id="medical_info" class="form-control"></textarea>
             </div>
 
-            <div class="form-group">
+            <div class="miqt-form-actions-bar mt-2">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Add Student
+                    <i class="fas fa-save"></i> Add student
                 </button>
                 <a href="students.php" class="btn btn-secondary">
                     <i class="fas fa-times"></i> Cancel
                 </a>
             </div>
-        </form>
     </div>
 </div>
+</form>
 
 <script>
 document.getElementById('create_login').addEventListener('change', function() {

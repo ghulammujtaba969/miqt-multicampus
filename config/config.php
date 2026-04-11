@@ -14,6 +14,8 @@ define('DB_NAME', 'u921830511_miqt');
 define('SITE_NAME', 'MIQT - Minhaj Institute of Qirat & Tajweed');
 // define('SITE_URL', 'https://miqt.edus.app');
 define('SITE_URL', 'http://localhost/miqt/02-04-2026-miqt/');
+/** Public URL for institute logo / favicon (PNG). */
+define('MIQT_LOGO_URL', SITE_URL . 'assets/img/favicon.png');
 define('BASE_PATH', dirname(dirname(__FILE__)));
 
 // Directory Paths

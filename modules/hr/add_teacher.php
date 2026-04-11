@@ -70,20 +70,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 require_once '../../includes/header.php';
 ?>
 
-<div class="page-header">
-    <h1 class="page-title">Add New Teacher</h1>
-    <p class="subtitle">Enter teacher information</p>
+<div class="miqt-forms-page-header">
+    <h2>Add teacher</h2>
+    <div class="miqt-breadcrumb-custom">
+        <a href="<?php echo SITE_URL; ?>/modules/dashboard/index.php">Dashboard</a>
+        <span class="sep">›</span>
+        <a href="teachers.php">Teachers</a>
+        <span class="sep">›</span>
+        <span>Add</span>
+    </div>
 </div>
 
 <?php if (isset($error)): ?>
 <div class="alert alert-danger"><?php echo $error; ?></div>
 <?php endif; ?>
 
-<div class="dashboard-card">
-    <div class="card-body">
-        <form method="POST" action="" enctype="multipart/form-data">
-            <h3 class="mb-20">Personal Information</h3>
-
+<form method="POST" action="" enctype="multipart/form-data">
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-user"></i></div>
+        <div>
+            <h3>Personal information</h3>
+            <p>Identity, contact, and photo</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="first_name">First Name *</label>
@@ -152,9 +163,18 @@ require_once '../../includes/header.php';
                 <label for="address">Address</label>
                 <textarea name="address" id="address" class="form-control" rows="2"></textarea>
             </div>
+    </div>
+</div>
 
-            <h3 class="mb-20 mt-20">Professional Information</h3>
-
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-briefcase"></i></div>
+        <div>
+            <h3>Professional information</h3>
+            <p>Qualification, joining, and employment</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="qualification">Qualification *</label>
@@ -190,9 +210,18 @@ require_once '../../includes/header.php';
                 <label for="salary">Monthly Salary (Optional)</label>
                 <input type="number" name="salary" id="salary" class="form-control" step="0.01" min="0">
             </div>
+    </div>
+</div>
 
-            <h3 class="mb-20 mt-20">Reference Information</h3>
-
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-user-friends"></i></div>
+        <div>
+            <h3>Reference &amp; history</h3>
+            <p>References and prior experience</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="reference_name">Reference Name</label>
@@ -213,16 +242,16 @@ require_once '../../includes/header.php';
                           placeholder="Previous teaching experience..."></textarea>
             </div>
 
-            <div class="form-group">
+            <div class="miqt-form-actions-bar mt-2">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Add Teacher
+                    <i class="fas fa-save"></i> Add teacher
                 </button>
                 <a href="teachers.php" class="btn btn-secondary">
                     <i class="fas fa-times"></i> Cancel
                 </a>
             </div>
-        </form>
     </div>
 </div>
+</form>
 
 <?php require_once '../../includes/footer.php'; ?>

@@ -12,11 +12,14 @@ if (!isset($pageTitle)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $pageTitle !== '' ? htmlspecialchars($pageTitle) . ' - ' . SITE_NAME : SITE_NAME; ?></title>
+    <link rel="icon" type="image/png" href="<?php echo MIQT_LOGO_URL; ?>">
+    <link rel="apple-touch-icon" href="<?php echo MIQT_LOGO_URL; ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,400&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/theme-primary.css">
+    <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/theme-pages.css">
     <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -24,7 +27,7 @@ if (!isset($pageTitle)) {
     <div class="wrapper">
         <nav class="sidebar" id="miqt-sidebar">
             <div class="sb-brand">
-                <div class="logo-sq" aria-hidden="true">🕌</div>
+                <div class="logo-sq" aria-hidden="true"><img src="<?php echo MIQT_LOGO_URL; ?>" alt="" width="42" height="42" decoding="async"></div>
                 <div class="brand-text">
                     <div class="name">MIQT System</div>
                     <div class="sub">Islamic Institute</div>
@@ -45,6 +48,18 @@ if (!isset($pageTitle)) {
                         <i class="fas fa-home"></i> Dashboard
                     </a>
                 </li>
+                <li>
+                    <a href="<?php echo SITE_URL; ?>/modules/profile/index.php">
+                        <i class="fas fa-user"></i> Profile
+                    </a>
+                </li>
+                <?php if (hasPermission(['principal', 'vice_principal', 'coordinator'])): ?>
+                <li>
+                    <a href="<?php echo SITE_URL; ?>/modules/email/index.php">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                </li>
+                <?php endif; ?>
 
                 <?php if (hasPermission(['principal', 'vice_principal', 'coordinator'])): ?>
                 <li>

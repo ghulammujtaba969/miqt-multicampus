@@ -163,6 +163,15 @@ th[style*="text-align:left"] {
     text-align: center;
 }
 
+.sidebar-header-logo {
+    display: block;
+    margin: 0 auto 12px;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
 .sidebar-header h3 {
     font-size: 22px;
     margin-bottom: 10px;
@@ -221,7 +230,8 @@ th[style*="text-align:left"] {
 }
 
 .sidebar.collapsed .sidebar-header h3,
-.sidebar.collapsed .sidebar-header p {
+.sidebar.collapsed .sidebar-header p,
+.sidebar.collapsed .sidebar-header-logo {
     display: none;
 }
 
@@ -248,6 +258,10 @@ th[style*="text-align:left"] {
 
 .sidebar.collapsed.hovering .sidebar-header h3,
 .sidebar.collapsed.hovering .sidebar-header p {
+    display: block;
+}
+
+.sidebar.collapsed.hovering .sidebar-header-logo {
     display: block;
 }
 

@@ -73,20 +73,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 require_once '../../includes/header.php';
 ?>
 
-<div class="page-header">
-    <h1 class="page-title">Edit Staff</h1>
-    <p class="subtitle"><?php echo htmlspecialchars($staff['username']); ?> - <?php echo htmlspecialchars($staff['full_name']); ?></p>
+<div class="miqt-forms-page-header">
+    <h2>Edit staff</h2>
+    <div class="miqt-breadcrumb-custom">
+        <a href="<?php echo SITE_URL; ?>/modules/dashboard/index.php">Dashboard</a>
+        <span class="sep">›</span>
+        <a href="staff.php">Staff</a>
+        <span class="sep">›</span>
+        <a href="view_staff.php?id=<?php echo (int)$staff_id; ?>">View</a>
+        <span class="sep">›</span>
+        <span>Edit</span>
+    </div>
 </div>
+<p class="text-muted small mb-3"><?php echo htmlspecialchars($staff['username']); ?> — <?php echo htmlspecialchars($staff['full_name']); ?></p>
 
 <?php if (isset($error)): ?>
 <div class="alert alert-danger"><?php echo $error; ?></div>
 <?php endif; ?>
 
-<div class="dashboard-card">
-    <div class="card-body">
-        <form method="POST" action="">
-            <h3 class="mb-20">Staff Information</h3>
-
+<form method="POST" action="">
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-user-tie"></i></div>
+        <div>
+            <h3>Staff account</h3>
+            <p>Update login, role, and status</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="username">Username *</label>
@@ -134,17 +148,17 @@ require_once '../../includes/header.php';
                 </div>
             </div>
 
-            <div class="form-group mt-20">
+            <div class="miqt-form-actions-bar mt-2">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Update Staff
+                    <i class="fas fa-save"></i> Update staff
                 </button>
                 <a href="view_staff.php?id=<?php echo $staff_id; ?>" class="btn btn-secondary">
                     <i class="fas fa-times"></i> Cancel
                 </a>
             </div>
-        </form>
     </div>
 </div>
+</form>
 
 <?php require_once '../../includes/footer.php'; ?>
 

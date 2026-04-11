@@ -77,13 +77,21 @@ body.miqt-app .sb-brand {
 body.miqt-app .sb-brand .logo-sq {
   width: 42px;
   height: 42px;
-  background: linear-gradient(135deg, var(--miqt-sky), var(--miqt-cobalt));
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
   flex-shrink: 0;
+  overflow: hidden;
+  padding: 3px;
+}
+
+body.miqt-app .sb-brand .logo-sq img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
 }
 
 body.miqt-app .sb-brand .brand-text .name {
@@ -943,6 +951,7 @@ body.miqt-login-body {
 
 .miqt-login-body .left-panel {
   width: 55%;
+  min-height: 100vh;
   background: linear-gradient(150deg, var(--miqt-cobalt-deep) 0%, var(--miqt-cobalt) 50%, var(--miqt-sky) 100%);
   position: relative;
   display: flex;
@@ -950,6 +959,8 @@ body.miqt-login-body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: clamp(24px, 5vh, 48px) clamp(28px, 6vw, 64px);
+  box-sizing: border-box;
 }
 
 .miqt-login-body .geo-pattern {
@@ -992,14 +1003,26 @@ body.miqt-login-body {
 .miqt-login-body .left-content {
   position: relative;
   z-index: 2;
+  box-sizing: border-box;
+  width: min(100%, 460px);
+  max-width: 460px;
+  margin: 0 auto;
+  padding: clamp(16px, 3vh, 32px) clamp(16px, 4vw, 28px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  padding: 40px;
 }
 
 .miqt-login-body .mosque-icon {
-  font-size: 4rem;
-  margin-bottom: 20px;
+  width: 96px;
+  max-width: min(96px, 28vw);
+  height: auto;
+  aspect-ratio: 1;
+  margin: 0 0 20px;
   display: block;
+  align-self: center;
+  object-fit: contain;
   filter: drop-shadow(0 4px 20px rgba(200, 144, 42, 0.35));
   animation: miqtFloatIcon 4s ease-in-out infinite;
 }
@@ -1147,6 +1170,14 @@ body.miqt-login-body {
   color: var(--miqt-cobalt-deep);
   margin-bottom: 18px;
   letter-spacing: 0.3px;
+}
+
+.miqt-login-body .institute-badge-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .miqt-login-body .form-label.miqt-label {

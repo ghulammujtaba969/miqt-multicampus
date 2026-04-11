@@ -88,20 +88,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 require_once '../../includes/header.php';
 ?>
 
-<div class="page-header">
-    <h1 class="page-title">Edit Teacher</h1>
-    <p class="subtitle"><?php echo $teacher['teacher_id']; ?> - <?php echo $teacher['first_name'] . ' ' . $teacher['last_name']; ?></p>
+<div class="miqt-forms-page-header">
+    <h2>Edit teacher</h2>
+    <div class="miqt-breadcrumb-custom">
+        <a href="<?php echo SITE_URL; ?>/modules/dashboard/index.php">Dashboard</a>
+        <span class="sep">›</span>
+        <a href="teachers.php">Teachers</a>
+        <span class="sep">›</span>
+        <a href="view_teacher.php?id=<?php echo (int)$teacher_id; ?>">View</a>
+        <span class="sep">›</span>
+        <span>Edit</span>
+    </div>
 </div>
+<p class="text-muted small mb-3"><?php echo htmlspecialchars($teacher['teacher_id']); ?> — <?php echo htmlspecialchars($teacher['first_name'] . ' ' . $teacher['last_name']); ?></p>
 
 <?php if (isset($error)): ?>
 <div class="alert alert-danger"><?php echo $error; ?></div>
 <?php endif; ?>
 
-<div class="dashboard-card">
-    <div class="card-body">
-        <form method="POST" action="" enctype="multipart/form-data">
-            <h3 class="mb-20">Personal Information</h3>
-
+<form method="POST" action="" enctype="multipart/form-data">
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-user"></i></div>
+        <div>
+            <h3>Personal information</h3>
+            <p>Identity, contact, and photo</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="first_name">First Name *</label>
@@ -219,9 +233,18 @@ require_once '../../includes/header.php';
                 <input type="number" name="salary" id="salary" class="form-control" step="0.01"
                        value="<?php echo $teacher['salary']; ?>">
             </div>
+    </div>
+</div>
 
-            <h3 class="mb-20 mt-20">Reference Information</h3>
-
+<div class="miqt-form-section">
+    <div class="miqt-form-section-header">
+        <div class="miqt-section-icon"><i class="fas fa-user-friends"></i></div>
+        <div>
+            <h3>Reference &amp; history</h3>
+            <p>References and prior experience</p>
+        </div>
+    </div>
+    <div class="miqt-form-section-body">
             <div class="form-row">
                 <div class="form-group">
                     <label for="reference_name">Reference Name</label>
@@ -244,16 +267,16 @@ require_once '../../includes/header.php';
                           placeholder="Previous teaching experience..."><?php echo htmlspecialchars($teacher['past_history'] ?? ''); ?></textarea>
             </div>
 
-            <div class="form-group">
+            <div class="miqt-form-actions-bar mt-2">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Update Teacher
+                    <i class="fas fa-save"></i> Update teacher
                 </button>
                 <a href="view_teacher.php?id=<?php echo $teacher_id; ?>" class="btn btn-secondary">
                     <i class="fas fa-times"></i> Cancel
                 </a>
             </div>
-        </form>
     </div>
 </div>
+</form>
 
 <?php require_once '../../includes/footer.php'; ?>

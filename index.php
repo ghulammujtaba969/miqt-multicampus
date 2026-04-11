@@ -110,6 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - <?php echo htmlspecialchars(SITE_NAME); ?></title>
+    <link rel="icon" type="image/png" href="<?php echo MIQT_LOGO_URL; ?>">
+    <link rel="apple-touch-icon" href="<?php echo MIQT_LOGO_URL; ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -123,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="geo-pattern"></div>
         <div class="geo-circles"></div>
         <div class="left-content">
-            <span class="mosque-icon" aria-hidden="true">🕌</span>
+            <img class="mosque-icon" src="<?php echo MIQT_LOGO_URL; ?>" alt="MIQT logo" width="96" height="96" decoding="async">
             <div class="brand-name">MIQT <span>System</span></div>
             <div class="brand-tagline">Minhaj Institute of Qirat &amp; Tajweed</div>
             <div class="divider-ornament">✦</div>
@@ -139,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="right-panel">
         <div class="login-box">
-            <div class="institute-badge">Minhaj Institute of Qira'at &amp; Tehfeez-ul-Quran</div>
+            <div class="institute-badge"><img class="institute-badge-logo" src="<?php echo MIQT_LOGO_URL; ?>" alt="" width="22" height="22" decoding="async"> Minhaj Institute of Qira'at &amp; Tehfeez-ul-Quran</div>
             <h2 class="login-heading">Welcome Back</h2>
             <p class="login-subheading">Sign in to your account to continue</p>
 
